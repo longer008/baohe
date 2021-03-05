@@ -1,0 +1,34 @@
+import axios from "axios";
+
+let config = {
+  timeout: 60 * 1000 * 2,
+  //withCredentials: true,
+  // baseURL: "https://v1.alapi.cn/api",
+  baseURL: "https://www.zhihu.com/api/v3/",
+};
+
+const _axios = axios.create(config);
+
+_axios.interceptors.request.use(
+  async (config) => {
+    config.headers = {
+      "Content-Type": "application/json;charset=UTF-8",
+    };
+    return config;
+  },
+  async (error) => {
+    return Promise.reject(error);
+  }
+);
+
+_axios.interceptors.response.use(
+  (response) => {
+    return response.data;
+  },
+  (error) => {
+    console.log(error);
+    return Promise.reject(error);
+  }
+);
+
+export default _axios;
