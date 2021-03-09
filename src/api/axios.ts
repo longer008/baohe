@@ -14,6 +14,11 @@ _axios.interceptors.request.use(
     config.headers = {
       "Content-Type": "application/json;charset=UTF-8",
     };
+    // 如果存在token 就携带token
+    const token = window.localStorage.getItem("accessToken");
+    if (token) {
+      config.headers.common.Authorization = token;
+    }
     return config;
   },
   async (error) => {
@@ -23,7 +28,12 @@ _axios.interceptors.request.use(
 
 _axios.interceptors.response.use(
   (response) => {
-    return response.data;
+    const res=response.data
+    if (response.status !== 200) {
+      return Promise.reject(new Error(res.message || "Error"));
+    } else {
+      return res;
+    }
   },
   (error) => {
     console.log(error);

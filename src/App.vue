@@ -1,40 +1,66 @@
 <template>
   <div class="main" :class="theme">
     <!-- <Head /> -->
-    <div class="container">
-      <router-view class="router-view" v-slot="{ Component }">
+    <!-- <div class="container"> -->
+    <router-view></router-view>
+    <back-top v-if="show2top"></back-top>
+    <!-- <router-view class="router-view" v-slot="{ Component }">
         <transition :name="transitionName">
           <component :is="Component" />
         </transition>
-      </router-view>
-    </div>
+      </router-view> -->
+    <!-- </div> -->
     <!-- <Foot /> -->
   </div>
   <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
   <!-- <HelloWorld msg="Hello Vue 3 + Vite" /> -->
 </template>
 
-<script>
+<script lang="ts">
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import { toRefs, reactive, computed } from "vue";
-// import Home from '@com/home/Home.vue'
-export default {
-// import HelloWorld from './components/HelloWorld.vue'
+import { ref, defineComponent,toRefs, reactive, computed, watch, onMounted } from "vue";
+// import BackTop from "@com/common/BackTop.vue";
+import BackTop from '@com/common/BackTop.vue'
+export default defineComponent({
+  components: {
+    BackTop,
+  },
 
-// This starter template is using Vue 3 experimental <script setup> SFCs
-// Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
-  setup(){
+  setup() {
     const state = reactive({
-  transitionName: "slide-left",
-  theme: "night",
+      transitionName: "slide-left",
+      theme: "night",
+      scrollHeight:
+        document.documentElement.scrollTop || document.body.scrollTop,
+    });
+    const show2top = ref(false);
+    onMounted(() => {
+      window.addEventListener("scroll", handleScroll);
+    });
+    const handleScroll = () => {
+      let scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= 1400) {
+        show2top.value = true;
+      } else {
+        show2top.value = false;
+      }
+    };
+
+    return { ...toRefs(state), show2top };
+  },
 });
-return { ...toRefs(state) };
-  }
-}
 </script>
 
 <style>
+:root {
+  --border-color: #ebebeb;
+  --zhihu-color: #9fadc7;
+  /* css变量 */
+  --bgc:#f6f6f6;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -42,5 +68,7 @@ return { ...toRefs(state) };
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  background-color: var(--bgc);
+  scroll-behavior: smooth;
 }
 </style>

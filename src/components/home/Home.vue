@@ -1,25 +1,31 @@
 <template>
-  <div class="home">
     <div class="zhihu-hot">
       <div class="header">
-        <a href="">推荐</a>
-        <a href="">关注</a>
-        <a href="">热榜</a>
+        <!-- <a href="">知乎</a>
+        <a href="">百度</a>
+        <a href="">热榜</a> -->
       </div>
       <div class="hot-list">
-        <div class="hot-item" v-for="item in newList" :key="item.id">
-          <span>{{ index }}</span>
-          <span>{{ item.target.title }}</span>
-        </div>
+        <card
+
+          v-for="(item, index) in newList"
+           :news-info="item"
+          :key="item.id"
+          :index="index"
+        ></card>
+
       </div>
     </div>
-  </div>
 </template>
 
-<script>
-import { getNewList } from "@api/";
-import { toRefs, reactive,onMounted } from "vue";
-export default {
+<script lang="ts">
+import { getNewList } from "@api/index";
+import { toRefs, reactive, onMounted,defineComponent } from "vue";
+import Card from "@com/common/Card.vue";
+export default defineComponent({
+  components: {
+    card: Card,
+  },
   setup() {
     const state = reactive({
       // 接口参数
@@ -57,19 +63,21 @@ export default {
       ...toRefs(state),
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
 .zhihu-hot {
-  width: 695px;
+  width: 696px;
+  margin: 0 auto;
+  border: 1px solid #f0f2f7;
 
   .header {
     width: 100%;
     height: 60px;
     line-height: 60px;
     display: flex;
-    padding: 20px;
+    // padding: 20px;
     justify-content: flex-start;
     a {
       display: inline-block;
