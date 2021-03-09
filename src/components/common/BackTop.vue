@@ -8,7 +8,7 @@
 
 <script >
 export default {
-  setup(props, context) {
+  setup() {
     const back2top = () => {
       window.scrollTo(0, 0);
     };

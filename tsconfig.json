@@ -11,6 +11,7 @@
     "noImplicitAny": false, //可以使用any
     "removeComments": true, //删除注释
     "allowSyntheticDefaultImports": true, //引入模块的时候不用以*as的形式
+    "noUnusedParameters":false, //可以存在定义了没使用的变量
     "rootDir": ".",
     "baseUrl": ".", //以项目根目录为基
     "paths": {

@@ -17,7 +17,7 @@ export default defineConfig({
   css:{
     postcss: {
       plugins: [
-          require('autoprefixer'),
+          // require('autoprefixer'),
           // require('tailwindcss'),
           // require('postcss-nested'),
           // require('postcss-simple-vars'),
@@ -43,7 +43,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'element-plus': ['element-plus'],
+          // 'element-plus': ['element-plus'],
           // echarts: ['echarts']
         }
       }

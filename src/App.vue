@@ -12,14 +12,12 @@
     <!-- </div> -->
     <!-- <Foot /> -->
   </div>
-  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-  <!-- <HelloWorld msg="Hello Vue 3 + Vite" /> -->
 </template>
 
 <script lang="ts">
-import { useStore } from "vuex";
-import { useRouter } from "vue-router";
-import { ref, defineComponent,toRefs, reactive, computed, watch, onMounted } from "vue";
+// import { useStore } from "vuex";
+// import { useRouter } from "vue-router";
+import { ref, defineComponent,toRefs, reactive, onMounted } from "vue";
 // import BackTop from "@com/common/BackTop.vue";
 import BackTop from '@com/common/BackTop.vue'
 export default defineComponent({

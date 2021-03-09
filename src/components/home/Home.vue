@@ -1,26 +1,24 @@
 <template>
-    <div class="zhihu-hot">
-      <div class="header">
-        <!-- <a href="">知乎</a>
+  <div class="zhihu-hot">
+    <div class="header">
+      <!-- <a href="">知乎</a>
         <a href="">百度</a>
         <a href="">热榜</a> -->
-      </div>
-      <div class="hot-list">
-        <card
-
-          v-for="(item, index) in newList"
-           :news-info="item"
-          :key="item.id"
-          :index="index"
-        ></card>
-
-      </div>
     </div>
+    <div class="hot-list">
+      <card
+        v-for="(item, index) in newList"
+        :news-info="item"
+        :key="item.id"
+        :index="index"
+      ></card>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
 import { getNewList } from "@api/index";
-import { toRefs, reactive, onMounted,defineComponent } from "vue";
+import { toRefs, reactive, onMounted, defineComponent } from "vue";
 import Card from "@com/common/Card.vue";
 export default defineComponent({
   components: {

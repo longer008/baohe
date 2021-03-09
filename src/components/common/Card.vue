@@ -11,41 +11,55 @@
      rel="noopener noreferrer"
       data-za-not-track-link="true" -->
     <a
-    :href="newsInfo.target.url.replace('api','www').replace('questions','question')"
-     rel="noopener noreferrer"
+      :href="
+        newsInfo.target.url
+          .replace('api', 'www')
+          .replace('questions', 'question')
+      "
+      rel="noopener noreferrer"
       data-za-not-track-link="true"
       class="news-info"
       :style="newsInfo.children[0].thumbnail === '' ? { width: '621px' } : ''"
-
     >
       <h2 class="news-title common-pointer" :title="newsInfo.target.title">
         {{ newsInfo.target.title }}
       </h2>
       <p
-      :title="newsInfo.target.title"
+        :title="newsInfo.target.title"
         class="news-desc common-pointer"
         :class="
-          newsInfo.target.title.length > 22 &&newsInfo.children[0].thumbnail !== ''
+          newsInfo.target.title.length > 22 &&
+          newsInfo.children[0].thumbnail !== ''
             ? 'text-overflow'
-            :newsInfo.target.title.length > 33 &&newsInfo.children[0].thumbnail === ''?'text-overflow' :'multiLine multline'"
-
+            : newsInfo.target.title.length > 33 &&
+              newsInfo.children[0].thumbnail === ''
+            ? 'text-overflow'
+            : 'multiLine multline'
+        "
       >
         {{ newsInfo.target.excerpt }}
       </p>
 
       <div class="hot-box">
         <span> <i class="io io-huo"></i>{{ newsInfo.detail_text }}</span>
-        <span class="share-box common-pointer"> <i class="io io-sharearrow"></i> 分享</span>
+        <span class="share-box common-pointer">
+          <i class="io io-sharearrow"></i> 分享</span
+        >
       </div>
     </a>
-    <a href="" class="news-img common-pointer" v-if="newsInfo.children[0].thumbnail" :title="newsInfo.target.title">
+    <a
+      href=""
+      class="news-img common-pointer"
+      v-if="newsInfo.children[0].thumbnail"
+      :title="newsInfo.target.title"
+    >
       <img :src="newsInfo.children[0].thumbnail" alt="" srcset="" />
     </a>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, reactive, onMounted,defineComponent } from "vue";
+import {  onMounted, defineComponent } from "vue";
 export default defineComponent({
   props: {
     index: {
@@ -60,16 +74,16 @@ export default defineComponent({
   },
 
   setup() {
-    onMounted(() => {
-    });
-    return {};
+    onMounted(() => {});
+    return {
+    };
   },
 });
 </script>
 
 <style lang="scss" scoped>
-a{
-    display: block;
+a {
+  display: block;
 }
 .news {
   width: 694px;
@@ -85,14 +99,14 @@ a{
     font-size: 18px;
     line-height: 1.8;
     text-align: center;
-    .is-new{
-        width: 19px;
-        height: 19px;
-        border-radius: 4px;
-        background-color: rgb(255, 150, 7);
-        color: #fff;
-        margin: 0 auto;
-        font-size: 12px;
+    .is-new {
+      width: 19px;
+      height: 19px;
+      border-radius: 4px;
+      background-color: rgb(255, 150, 7);
+      color: #fff;
+      margin: 0 auto;
+      font-size: 12px;
     }
   }
   .top-three-num {
@@ -121,7 +135,7 @@ a{
       color: #121212;
     }
     .news-desc {
-        font-size: 15px;
+      font-size: 15px;
       width: 100%;
       line-height: 25px;
       margin-top: 2px;
@@ -136,7 +150,7 @@ a{
       font-size: 14px;
       height: 16px;
       margin-top: 8px;
-      color: #9FADC7;
+      color: #9fadc7;
       pointer-events: none;
       .share-box {
         display: inline-block;
@@ -155,8 +169,8 @@ a{
 .io-sharearrow {
   color: var(--zhihu-color);
 }
-.common-pointer{
-    cursor: pointer;
+.common-pointer {
+  cursor: pointer;
 }
 </style>
 
