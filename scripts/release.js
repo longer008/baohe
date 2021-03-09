@@ -12,7 +12,7 @@ const inc = (i) => semver.inc(currentVersion, i)
 const bin = (name) => path.resolve(__dirname, `../node_modules/.bin/${name}`)
 const run = (bin, args, opts = {}) =>
   execa(bin, args, { stdio: 'inherit', ...opts })
-  
+
 const step = (msg) => console.log(chalk.cyan(msg))
 
 async function main() {
@@ -94,7 +94,7 @@ async function main() {
   // Push to GitHub.
   step('\nPushing to GitHub...')
   //await run('git', ['push', 'origin', `refs/tags/v${targetVersion}`])
-  await run('git', ['push'])
+  await run('git', ['push origin master'])
 }
 
 function updatePackage(version) {
