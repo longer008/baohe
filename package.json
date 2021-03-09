@@ -6,7 +6,7 @@
     "build": "vite build",
     "build:check": "vuedx-typecheck . && vite build",
     "serve": "vite preview",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "commit": "git add -A && npx cz",
     "release": "node scripts/release.js"
   },
