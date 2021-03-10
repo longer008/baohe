@@ -37,6 +37,14 @@ const routes:Array<RouteRecordRaw > = [
     },
     component: () => import("../views/Weibo.vue"),
   },
+  {
+    path: "/joke",
+    name: "joke",
+    meta: {
+      title: "笑话",
+    },
+    component: () => import("../views/Joke.vue"),
+  },
   // {
   //   path: "/user",
   //   name: "user",
