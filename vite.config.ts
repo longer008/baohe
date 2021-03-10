@@ -12,6 +12,7 @@ export default defineConfig({
       "@com": resolve(__dirname, "src/components"),
       "@api": resolve(__dirname, "src/api"),
       "@util": resolve(__dirname, "src/util"),
+      "@views": resolve(__dirname, "src/views"),
     }
   },
   css:{

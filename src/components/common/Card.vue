@@ -7,15 +7,11 @@
       {{ index + 1 }}
       <div class="is-new" v-if="newsInfo.debut">新</div>
     </div>
-    <!--  :href="newsInfo.target.url.replace('api','www')"
-     rel="noopener noreferrer"
-      data-za-not-track-link="true" -->
+    <!--  :href="newsInfo.target.url.replace('api', 'www').replace('questions', 'question')"
+      rel="noopener noreferrer"
+      data-za-not-track-link="true"-->
     <a
-      :href="
-        newsInfo.target.url
-          .replace('api', 'www')
-          .replace('questions', 'question')
-      "
+      :href="newsInfo.target.url.replace('api', 'www').replace('questions', 'question')"
       rel="noopener noreferrer"
       data-za-not-track-link="true"
       class="news-info"

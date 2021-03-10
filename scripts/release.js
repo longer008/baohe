@@ -42,15 +42,15 @@ async function main() {
     throw new Error(`Invalid target version: ${targetVersion}`)
   }
 
-  // const { yes: tagOk } = await prompt({
-  //   type: 'confirm',
-  //   name: 'yes',
-  //   message: `Releasing v${targetVersion}. Confirm?`
-  // })
+  const { yes: tagOk } = await prompt({
+    type: 'confirm',
+    name: 'yes',
+    message: `Releasing v${targetVersion}. Confirm?`
+  })
 
-  // if (!tagOk) {
-  //   return
-  // }
+  if (!tagOk) {
+    return
+  }
 
   // Update the package version.
   step('\nUpdating the package version...')
@@ -79,7 +79,7 @@ async function main() {
   step('\nCommitting changes...')
   await run('git', ['add', '-A'])
   await run('git', ['commit', '-m', `release: v${targetVersion}`])
-  //await run('git', ['tag', `v${targetVersion}`])
+  await run('git', ['tag', `v${targetVersion}`])
 
   // Publish the package.
   // step('\nPublishing the package...')
@@ -93,7 +93,7 @@ async function main() {
 
   // Push to GitHub.
   step('\nPushing to GitHub...')
-  //await run('git', ['push', 'origin', `refs/tags/v${targetVersion}`])
+  await run('git', ['push', 'origin', `refs/tags/v${targetVersion}`])
   await run('git', ['push'])
 }
 

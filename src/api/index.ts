@@ -7,7 +7,15 @@ import request from "./axios";
  */
  export const getNewList = (params) => {
   return request({
-    url: "feed/topstory/hot-lists/total",
+    url: "https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total",
+    method: "get",
+    params,
+  });
+};
+
+export const getWeiboList = (params) => {
+  return request({
+    url: "https://m.weibo.cn/api/container/getIndex?containerid=106003type%3D25%26t%3D3%26disable_hot%3D1%26filter_type%3Drealtimehot",
     method: "get",
     params,
   });

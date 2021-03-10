@@ -4,7 +4,7 @@ let config = {
   timeout: 60 * 1000 * 2,
   //withCredentials: true,
   // baseURL: "https://v1.alapi.cn/api",
-  baseURL: "https://www.zhihu.com/api/v3/",
+  baseURL: "",
 };
 
 const _axios = axios.create(config);

@@ -1,9 +1,9 @@
-import { createRouter, createWebHashHistory ,RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHashHistory,createWebHistory, RouteRecordRaw } from "vue-router";
 
 const routes:Array<RouteRecordRaw > = [
   {
     path: "/",
-    redirect: "/home",
+    redirect: "/zhihu",
   },
   // {
   //   path: "/login",
@@ -20,6 +20,22 @@ const routes:Array<RouteRecordRaw > = [
       title: "首页",
     },
     component: () => import("../components/home/Home.vue"),
+  },
+  {
+    path: "/zhihu",
+    name: "zhihu",
+    meta: {
+      title: "知乎",
+    },
+    component: () => import("../views/Zhihu.vue"),
+  },
+  {
+    path: "/weibo",
+    name: "weibo",
+    meta: {
+      title: "微博",
+    },
+    component: () => import("../views/Weibo.vue"),
   },
   // {
   //   path: "/user",

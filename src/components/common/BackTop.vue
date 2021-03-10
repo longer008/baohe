@@ -1,8 +1,8 @@
 <template>
-  <div class="back-to-top" data-tooltop="回到顶部" @click="back2top">
-    <button>
+  <div class="back-to-top" role="" data-tooltop="回到顶部" @click="back2top">
+    <!-- <button class="back-button"> -->
       <i class="io io-arrowup"></i>
-    </button>
+    <!-- </button> -->
   </div>
 </template>
 
@@ -33,14 +33,36 @@ export default {
   right: 12px;
   transition: transform 0.2s ease, -webkit-transform 0.2s ease;
   cursor: pointer;
-  button {
-    cursor: pointer;
-    i {
+  i {
+      position: absolute;
       color: #707070;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
     }
-  }
+  // .back-button {
+  //   width: 40px;
+  //   height: 40px;
+  //   line-height: 40px;
+  //   position: relative;
+  //   cursor: pointer;
+  //   i {
+  //     position: absolute;
+  //     color: #707070;
+  //     top: 0;
+  //     left: 0;
+  //   }
+  // }
   &:hover {
     background-color: #76839b;
+     &::before {
+      content: "";
+      border: 7px solid;
+      position: absolute;
+      right: 36px;
+      bottom: 13px;
+      border-color: transparent transparent transparent #000;
+    }
     &::after {
       content: attr(data-tooltop);
       height: 28px;
@@ -55,14 +77,7 @@ export default {
       border-radius: 4px;
       text-align: center;
     }
-    &::before {
-      content: "";
-      border: 7px solid;
-      position: absolute;
-      right: 36px;
-      bottom: 13px;
-      border-color: transparent transparent transparent #000;
-    }
+
   }
 }
 </style>

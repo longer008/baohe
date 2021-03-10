@@ -12,14 +12,14 @@
     "removeComments": true, //删除注释
     "allowSyntheticDefaultImports": true, //引入模块的时候不用以*as的形式
     "noUnusedParameters":false, //可以存在定义了没使用的变量
-    "rootDir": ".",
     "baseUrl": ".", //以项目根目录为基
     "paths": {
       // 需要和baseUrl配合  目录别名  和vite.config.ts 中的alias配置为一样的可以方便路径提示
       "@/*": ["src/*"],
       "@com/*": ["src/components/*"],
       "@api/*": ["src/api/*"],
-      "@util/*": ["src/util/*"]
+      "@util/*": ["src/util/*"],
+      "@views/*": ["src/views/*"],
     },
     "lib": ["esnext", "dom","dom.iterable", "scripthost"],
     "types": ["vite/client"],

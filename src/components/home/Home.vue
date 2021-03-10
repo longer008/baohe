@@ -1,18 +1,23 @@
 <template>
   <div class="zhihu-hot">
-    <div class="header">
-      <!-- <a href="">知乎</a>
-        <a href="">百度</a>
-        <a href="">热榜</a> -->
+    <nav class="header">
+      <a href="#zhihu">知乎</a>
+      <a href="">微博</a>
+      <a href="">热榜</a>
+    </nav>
+    <div class="scrolling-box">
+      <div class="hot-list" id="zhihu">
+        <card
+          v-for="(item, index) in newList"
+          :news-info="item"
+          :key="item.id"
+          :index="index"
+        ></card>
+      </div>
     </div>
-    <div class="hot-list">
-      <card
-        v-for="(item, index) in newList"
-        :news-info="item"
-        :key="item.id"
-        :index="index"
-      ></card>
-    </div>
+    <!-- <div class="hot-list-weibo" id="weibo">
+      <h2 class="tips"></h2>
+    </div> -->
   </div>
 </template>
 
@@ -37,7 +42,6 @@ export default defineComponent({
       newList: [],
     });
     // 获取新闻列表
-
     const getList = async (params = state.params) => {
       state.loading = true;
       const data = await getNewList(params);
@@ -77,6 +81,8 @@ export default defineComponent({
     display: flex;
     // padding: 20px;
     justify-content: flex-start;
+    align-items: center;
+    font-size: 16px;
     a {
       display: inline-block;
       align-items: center;
@@ -84,6 +90,9 @@ export default defineComponent({
       margin: 0 22px;
     }
   }
+}
+.tips {
+  height: 17px;
 }
 </style>
 
