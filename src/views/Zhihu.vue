@@ -10,7 +10,7 @@
 </template>
 
 <script lang='ts'>
-import { getNewList } from "@api/index";
+import { getZhiHuList } from "@api/index";
 import { ref, defineComponent, toRefs, reactive, onMounted } from "vue";
 import Card from "@com/common/Card.vue";
 export default defineComponent({
@@ -38,7 +38,7 @@ export default defineComponent({
     // 获取新闻列表
     const getList = async (params = state.params) => {
       state.loading = true;
-      const data = await getNewList(params);
+      const data = await getZhiHuList(params);
       state.params = params;
       let newList = data.data;
       localStorage.setItem("newList", JSON.stringify(newList));

@@ -6,7 +6,7 @@
 </template>
 
 <script lang='ts'>
-import { getWeiboList } from "@api/index";
+import { getWeiBoList } from "@api/index";
 import {
   ref,
   defineComponent,
@@ -33,7 +33,7 @@ export default {
     // 获取新闻列表
     const getList = async (params = state.params) => {
       state.loading = true;
-      const data = await getWeiboList(params);
+      const data = await getWeiBoList(params);
       let newList = data.data.cards[0].card_group;
       // localStorage.setItem("weiboList", JSON.stringify(newList));
       state.newList = newList;
