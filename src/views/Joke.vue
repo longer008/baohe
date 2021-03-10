@@ -1,7 +1,9 @@
 <template>
-  <div class="joke-text">{{ text }}</div>
-  <img src="https://api.vvhan.com/api/ip" alt="韩小韩API" />
-  <img src="https://api.vvhan.com/api/view" alt="韩小韩API">
+  <div class="joke-container">
+    <h3>开心一刻</h3>
+    <textarea class="joke-text" v-model="text"></textarea>
+    <img src="https://api.vvhan.com/api/ip" alt="天气" />
+  </div>
 </template>
 
 
@@ -30,8 +32,22 @@ export default {
 </script>
 
 <style scoped>
+.joke-container {
+  padding: 20px;
+}
+h3 {
+  font-size: 14px;
+}
 .joke-text {
+  width: 87vw;
+  min-height: 120px;
   font-size: 16px;
+  margin: 0 auto;
+}
+img {
+  width: 87vw;
+  height: 227px;
+  object-fit: contain;
 }
 </style>
 

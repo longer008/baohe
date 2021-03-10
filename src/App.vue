@@ -24,9 +24,16 @@
 </template>
 
 <script lang="ts">
-// import { useStore } from "vuex";
+import { useStore } from "vuex";
 // import { useRouter } from "vue-router";
-import { ref, defineComponent, toRefs, reactive, onMounted } from "vue";
+import {
+  ref,
+  defineComponent,
+  toRefs,
+  reactive,
+  onMounted,
+  computed,
+} from "vue";
 import BackTop from "@com/common/BackTop.vue";
 export default defineComponent({
   components: {
@@ -39,20 +46,45 @@ export default defineComponent({
       theme: "night",
       scrollHeight:
         document.documentElement.scrollTop || document.body.scrollTop,
+      isPhone: <any>false,
+      isFirst: true,
     });
+    const store = useStore();
+
     const show2top = ref(false);
     // 监听滚动
     onMounted(() => {
+      handleSize();
       window.addEventListener("scroll", handleScroll);
+      // 谷歌浏览器onresize事件会执行2次，这里加个标志位控制
+      window.addEventListener("resize", handleSize);
     });
 
     const handleScroll = () => {
       let scrollTop =
         document.documentElement.scrollTop || document.body.scrollTop;
-      if (scrollTop >= 1400) {
+      if (scrollTop >= 700) {
         show2top.value = true;
       } else {
         show2top.value = false;
+      }
+    };
+    const handleSize = () => {
+      let width =
+          document.documentElement.clientWidth || document.body.clientWidth;
+      if (state.isFirst) {
+        if (width > 375) {
+          store.commit("updateDevice", false);
+        } else {
+          store.commit("updateDevice", true);
+        }
+        state.isFirst = false;
+        //0.5秒之后将标志位重置（Chrome的window.onresize默认执行两次）
+        setTimeout(() => {
+          state.isFirst = true;
+        }, 100);
+        width =
+          document.documentElement.clientWidth || document.body.clientWidth;
       }
     };
 
@@ -61,15 +93,15 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 :root {
   --border-color: #ebebeb;
   --zhihu-color: #9fadc7;
   /* css变量 */
   --bgc: #f6f6f6;
 }
-.main{
-    background-color: #f6f6f6;
+.main {
+  background-color: #f6f6f6;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -77,13 +109,15 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
   background-color: #f6f6f6;
   scroll-behavior: smooth;
+  width: 100vw;
+  height: 100vh;
 }
 
 .zhihu-hot {
-  width: 696px;
+  // width: 696px;
+  width: 100vw;
   margin: 0 auto;
   border: 1px solid #f0f2f7;
 
@@ -93,7 +127,7 @@ export default defineComponent({
     line-height: 60px;
     display: flex;
     // padding: 20px;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     font-size: 16px;
     // border-bottom: 1px solid #f0f2f7;

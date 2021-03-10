@@ -38,6 +38,7 @@ export default defineComponent({
   height: 55px;
   padding: 0 15px;
   border-bottom: 1px solid var(--border-color);
+  background-color: #fff;
 
   a {
     display: flex;

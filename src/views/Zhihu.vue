@@ -5,13 +5,23 @@
       :news-info="item"
       :key="item.id"
       :index="index"
+      :isPhone="isPhone"
     ></card>
   </div>
 </template>
 
 <script lang='ts'>
+import { useStore } from "vuex";
 import { getZhiHuList } from "@api/index";
-import { ref, defineComponent, toRefs, reactive, onMounted } from "vue";
+import {
+  ref,
+  defineComponent,
+  toRefs,
+  reactive,
+  watch,
+  onMounted,
+  computed,
+} from "vue";
 import Card from "@com/common/Card.vue";
 export default defineComponent({
   components: {
@@ -28,6 +38,7 @@ export default defineComponent({
       loading: false,
       // 新闻列表
       newList: [],
+      isPhone:false
     });
     // 监听滚动
     onMounted(() => {
@@ -45,11 +56,28 @@ export default defineComponent({
       state.newList = newList;
       state.loading = false;
     };
+
+    const store=useStore()
+
+    watch(
+      () => store.state.isPhone,
+      (value,pre) => {
+        console.log(value,pre);
+        state.isPhone=value
+      }
+    );
+
     return { ...toRefs(state) };
   },
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.hot-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+}
 </style>
 

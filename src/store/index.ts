@@ -5,6 +5,7 @@ export default createStore({
     theme: "",
     isLogin: false,
     user: {},
+    isPhone:false,
   },
   mutations: {
     login(state, user) {
@@ -16,5 +17,15 @@ export default createStore({
       console.log("store theme:", theme);
       state.theme = theme;
     },
+    // 修改设备
+    updateDevice(state,value){
+      state.isPhone=value
+    }
   },
+  getters:{
+    getDevice(state){
+      return state.isPhone
+
+    }
+  }
 });

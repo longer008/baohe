@@ -1,5 +1,5 @@
 <template>
-  <div class="hot-list-weibo" id="weibo">
+  <div class="hot-list-weibo">
     <h2 class="tips">实时热点，每分钟更新一次</h2>
     <list v-for="(item, index) in newList" :item="item" :key="index"></list>
   </div>
@@ -56,6 +56,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.hot-list-weibo{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+   margin: 20px auto;
+}
 .tips {
   height: 36px;
   line-height: 36px;
