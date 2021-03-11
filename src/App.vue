@@ -89,7 +89,6 @@ export default defineComponent({
         setTimeout(() => {
           state.isFirst = true;
         }, 100);
-        console.log(isPhone.value);
       }
     };
     // 依赖注入

@@ -48,7 +48,6 @@ export default defineComponent({
     });
     // 获取新闻列表
     const getList = async (params = state.params) => {
-      console.log("post");
 
       state.loading = true;
       const data = await getZhiHuList(params);
