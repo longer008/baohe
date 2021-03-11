@@ -13,14 +13,7 @@ const routes:Array<RouteRecordRaw > = [
   //   },
   //   component: () => import("../views/login/index.vue"),
   // },
-  {
-    path: "/home",
-    name: "home",
-    meta: {
-      title: "首页",
-    },
-    component: () => import("../components/home/Home.vue"),
-  },
+  
   {
     path: "/zhihu",
     name: "zhihu",

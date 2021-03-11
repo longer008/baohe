@@ -33,6 +33,8 @@ import {
   reactive,
   onMounted,
   computed,
+  provide,
+  inject,
 } from "vue";
 import BackTop from "@com/common/BackTop.vue";
 export default defineComponent({
@@ -46,7 +48,7 @@ export default defineComponent({
       theme: "night",
       scrollHeight:
         document.documentElement.scrollTop || document.body.scrollTop,
-      isPhone: <any>false,
+      // isPhone: <any>false,
       isFirst: true,
     });
     const store = useStore();
@@ -69,13 +71,16 @@ export default defineComponent({
         show2top.value = false;
       }
     };
+    let isPhone = ref(false);
     const handleSize = () => {
       let width =
-          document.documentElement.clientWidth || document.body.clientWidth;
+        document.documentElement.clientWidth || document.body.clientWidth;
       if (state.isFirst) {
         if (width > 375) {
+          isPhone.value = false;
           store.commit("updateDevice", false);
         } else {
+          isPhone.value = true;
           store.commit("updateDevice", true);
         }
         state.isFirst = false;
@@ -83,10 +88,11 @@ export default defineComponent({
         setTimeout(() => {
           state.isFirst = true;
         }, 100);
-        width =
-          document.documentElement.clientWidth || document.body.clientWidth;
+        console.log(isPhone.value);
       }
     };
+    // 依赖注入
+    provide("isPhone", isPhone);
 
     return { ...toRefs(state), show2top };
   },

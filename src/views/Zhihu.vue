@@ -5,7 +5,7 @@
       :news-info="item"
       :key="item.id"
       :index="index"
-      :isPhone="isPhone"
+
     ></card>
   </div>
 </template>
@@ -20,6 +20,7 @@ import {
   reactive,
   watch,
   onMounted,
+  onUnmounted,
   computed,
 } from "vue";
 import Card from "@com/common/Card.vue";
@@ -38,10 +39,12 @@ export default defineComponent({
       loading: false,
       // 新闻列表
       newList: [],
-      isPhone:false
+      isPhone:<any>false,
+
     });
     // 监听滚动
     onMounted(() => {
+
       // 初始请求数据
       let newList = localStorage.getItem("newList");
       newList ? (state.newList = JSON.parse(newList)) : getList();
@@ -58,14 +61,13 @@ export default defineComponent({
     };
 
     const store=useStore()
-
-    watch(
-      () => store.state.isPhone,
-      (value,pre) => {
-        console.log(value,pre);
-        state.isPhone=value
-      }
-    );
+    // watch(
+    //   () => store.state.isPhone,
+    //   (value,pre) => {
+    //     console.log(value,pre);
+    //     state.isPhone=value
+    //   }
+    // );
 
     return { ...toRefs(state) };
   },

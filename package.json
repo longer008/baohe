@@ -3,8 +3,7 @@
   "version": "0.0.8",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "build:check": "vuedx-typecheck . && vite build",
+    "build": "vuedx-typecheck . && vite build",
     "serve": "vite preview",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0 -s",
     "commit": "git add -A && npx cz",
@@ -26,6 +25,7 @@
     "@vuedx/typecheck": "^0.6.3",
     "@vuedx/typescript-plugin-vue": "^0.6.3",
     "autoprefixer": "^10.2.5",
+    "babel-plugin-import": "^1.13.3",
     "chalk": "^4.1.0",
     "commitizen": "^4.2.3",
     "cz-conventional-changelog": "^3.3.0",

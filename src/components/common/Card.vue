@@ -7,9 +7,6 @@
       {{ index + 1 }}
       <div class="is-new" v-if="newsInfo.debut">新</div>
     </div>
-    <!--  :href="newsInfo.target.url.replace('api', 'www').replace('questions', 'question')"
-      rel="noopener noreferrer"
-      data-za-not-track-link="true"-->
     <a
       :href="
         newsInfo.target.url
@@ -19,7 +16,13 @@
       rel="noopener noreferrer"
       data-za-not-track-link="true"
       class="news-info"
-      :style="newsInfo.children[0].thumbnail === '' ? { width: '621px' } : ''"
+      :style="
+        newsInfo.children[0].thumbnail === ''
+          ? isPhone
+            ? { maxWidth: '342px' }
+            : { width: '621px' }
+          : ''
+      "
     >
       <h2 class="news-title common-pointer" :title="newsInfo.target.title">
         {{ newsInfo.target.title }}
@@ -59,7 +62,18 @@
 </template>
 
 <script lang="ts">
-import { ref, onMounted, defineComponent, watch, computed } from "vue";
+import { useStore } from "vuex";
+import {
+  ref,
+  onMounted,
+  defineComponent,
+  watch,
+  onUnmounted,
+  computed,
+  reactive,
+  toRefs,
+  inject,
+} from "vue";
 export default defineComponent({
   props: {
     index: {
@@ -71,14 +85,20 @@ export default defineComponent({
     newsInfo: {
       default: {},
     },
-    isPhone:{
-      default:false
-    },
+    // isPhone:{
+    //   default:false
+    // },
   },
 
   setup() {
+    let isPhone:any = inject("isPhone");
 
-    return {};
+    watch(isPhone, (value) => {
+      console.log(value);
+    });
+    return {
+      isPhone,
+    };
   },
 });
 </script>
@@ -167,88 +187,91 @@ a {
     margin-left: 16px;
   }
 }
-@media screen and (max-width:376px) {
+@media screen and (max-width: 376px) {
   .news {
-  width: 100%;
-  height: 138px;
-  background-color: #fff;
-  padding: 16px 16px 16px 0;
-  display: flex;
-  position: relative;
-  border-bottom: 1px solid var(--border-color);
-  .news-number {
-    width: 30px;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 1.8;
-    text-align: center;
-    .is-new {
-      width: 19px;
-      height: 19px;
-      border-radius: 4px;
-      background-color: rgb(255, 150, 7);
-      color: #fff;
-      margin: 0 auto;
-      font-size: 12px;
-    }
-  }
-  .top-three-num {
-    color: #ff9607;
-  }
-  .other-num {
-    color: #999;
-  }
-  .news-info {
-    width: 200px;
+    width: 100%;
+    height: 116px;
+    background-color: #fff;
+    padding: 8px 8px 8px 0;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    .news-title {
-      width: 100%;
-      text-align: left;
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
+    .news-number {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 26px;
+      font-weight: 600;
       font-size: 18px;
-      line-height: 28px;
-      max-height: 56px;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      color: #121212;
-    }
-    .news-desc {
-      font-size: 15px;
-      width: 100%;
-      line-height: 25px;
-      margin-top: 2px;
-      min-height: 25px;
-      text-align: left;
-      color: #444;
-    }
-    .multline {
-      max-height: 50px;
-    }
-    .hot-box {
-      font-size: 14px;
-      height: 16px;
-      margin-top: 8px;
-      color: #9fadc7;
-      pointer-events: none;
-      .share-box {
-        display: inline-block;
-        margin-left: 40px;
+      // line-height: 1.8;
+      text-align: center;
+      .is-new {
+        width: 19px;
+        height: 19px;
+        border-radius: 4px;
+        background-color: rgb(255, 150, 7);
+        color: #fff;
+        margin: 0 auto;
+        font-size: 12px;
       }
     }
+    .top-three-num {
+      color: #ff9607;
+    }
+    .other-num {
+      color: #999;
+    }
+    .news-info {
+      max-width: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      .news-title {
+        width: 100%;
+        text-align: left;
+        font-size: 16px;
+        line-height: 32px;
+        max-height: 56px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        color: #121212;
+      }
+      .news-desc {
+        font-size: 14px;
+        width: 100%;
+        line-height: 25px;
+        margin-top: 2px;
+        min-height: 25px;
+        text-align: left;
+        color: #444;
+      }
+      .multline {
+        max-height: 50px;
+      }
+      .hot-box {
+        display: none;
+        // font-size: 14px;
+        // height: 16px;
+        // margin-top: 8px;
+        // color: #9fadc7;
+        // pointer-events: none;
+        // .share-box {
+        //   display: inline-block;
+        //   margin-left: 40px;
+        // }
+      }
+    }
+    .news-img img {
+      border-radius: 4px;
+      width: 136px;
+      height: 100px;
+      margin-left: 8px;
+    }
   }
-  .news-img img {
-    border-radius: 4px;
-    width: 120px;
-    height: 80px;
-    margin-left: 16px;
-  }
-}
-
 }
 .io-huo,
 .io-sharearrow {
