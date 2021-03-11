@@ -43,8 +43,9 @@ export default defineComponent({
     // 监听滚动
     onMounted(() => {
       // 初始请求数据
-      let newList = localStorage.getItem("newList");
-      newList ? (state.newList = JSON.parse(newList)) : getList();
+      getList();
+      // let newList = localStorage.getItem("newList");
+      // newList ? (state.newList = JSON.parse(newList)) : getList();
     });
     // 获取新闻列表
     const getList = async (params = state.params) => {
@@ -53,7 +54,7 @@ export default defineComponent({
       const data = await getZhiHuList(params);
       state.params = params;
       let newList = data.data;
-      localStorage.setItem("newList", JSON.stringify(newList));
+      // localStorage.setItem("newList", JSON.stringify(newList));
       state.newList = newList;
       state.loading = false;
     };
