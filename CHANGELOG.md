@@ -1,3 +1,10 @@
+## [0.0.10](https://github.com/longer008/baohe/compare/v0.0.9...v0.0.10) (2021-03-11)
+
+### Bug Fixes
+
+- delete comment ([06f2e8f](https://github.com/longer008/baohe/commit/06f2e8fc52313122a552df679ee8b554252ed57f))
+- update vite.config.js ([2817798](https://github.com/longer008/baohe/commit/281779814378f7af486803da517d4e7863df1f22))
+
 ## [0.0.9](https://github.com/longer008/baohe/compare/v0.0.8...v0.0.9) (2021-03-11)
 
 ### Bug Fixes
