@@ -20,7 +20,6 @@ import {
   reactive,
   watch,
   onMounted,
-  onUnmounted,
   computed,
 } from "vue";
 import Card from "@com/common/Card.vue";
@@ -40,17 +39,17 @@ export default defineComponent({
       // 新闻列表
       newList: [],
       isPhone:<any>false,
-
     });
     // 监听滚动
     onMounted(() => {
-
       // 初始请求数据
       let newList = localStorage.getItem("newList");
       newList ? (state.newList = JSON.parse(newList)) : getList();
     });
     // 获取新闻列表
     const getList = async (params = state.params) => {
+      console.log("post");
+
       state.loading = true;
       const data = await getZhiHuList(params);
       state.params = params;
@@ -60,7 +59,7 @@ export default defineComponent({
       state.loading = false;
     };
 
-    const store=useStore()
+    // const store=useStore()
     // watch(
     //   () => store.state.isPhone,
     //   (value,pre) => {

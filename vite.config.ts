@@ -29,16 +29,24 @@ export default defineConfig({
   server: {
     port: 4000,
     open: true,
+    // 解决Chrome 里的请求报错 "CAUTION: Provisional headers are shown"
     proxy: {
-      '/api': {
+      '/zhihu-api': {
         target: "https://www.zhihu.com/api/v3/",
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, '')
+        rewrite: path => path.replace(/^\/zhihu-api/, '')
+      },
+      '/weibo-api': {
+        target: "https://m.weibo.cn/api/",
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/weibo-api/, '')
       }
     },
     cors: true
   },
   build: {
+    outDir:"dist",
+    assetsDir:"assets",
     sourcemap: false,
     // manifest: true,
     rollupOptions: {

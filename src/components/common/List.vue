@@ -114,7 +114,7 @@ export default defineComponent({
       line-height: 20px;
       margin-left: 4px;
       font-size: 14px;
-      vertical-align: top;
+      vertical-align: super;
       color: #939393;
     }
   }
