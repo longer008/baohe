@@ -6,7 +6,7 @@
       <nav class="header">
         <router-link :to="{ path: '/zhihu' }">知乎</router-link>
         <router-link :to="'weibo'">微博</router-link>
-        <a href="">热榜</a>
+        <router-link :to="'fund'">基金</router-link>
         <router-link :to="'joke'">笑话</router-link>
       </nav>
 

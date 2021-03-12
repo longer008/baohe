@@ -5,15 +5,8 @@ const routes:Array<RouteRecordRaw > = [
     path: "/",
     redirect: "/zhihu",
   },
-  // {
-  //   path: "/login",
-  //   name: "login",
-  //   meta: {
-  //     title: "登录",
-  //   },
-  //   component: () => import("../views/login/index.vue"),
-  // },
-  
+
+
   {
     path: "/zhihu",
     name: "zhihu",
@@ -29,6 +22,14 @@ const routes:Array<RouteRecordRaw > = [
       title: "微博",
     },
     component: () => import("../views/Weibo.vue"),
+  },
+    {
+    path: "/fund",
+    name: "fund",
+    meta: {
+      title: "基金",
+    },
+    component: () => import("../views/Fund.vue"),
   },
   {
     path: "/joke",

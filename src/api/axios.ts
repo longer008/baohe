@@ -11,7 +11,7 @@ const _axios = axios.create(config);
 _axios.interceptors.request.use(
   async (config) => {
     config.headers = {
-      // "Access-Control-Allow-Credentials": true,
+      "Access-Control-Allow-Credentials": true,
       // "Access-Control-Request-Headers":"x-requested-with",
       "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
       "Access-Control-Allow-Origin": "*",
