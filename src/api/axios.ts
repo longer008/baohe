@@ -2,8 +2,7 @@ import axios from "axios";
 
 let config = {
   timeout: 60 * 1000 * 2,
-  //withCredentials: true,
-  // baseURL: "https://v1.alapi.cn/api",
+  withCredentials: true,
   baseURL: "",
 };
 
