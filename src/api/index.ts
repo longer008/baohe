@@ -7,7 +7,7 @@ import request from "./axios";
  */
  export const getZhiHuList = (params) => {
   return request({
-    url: "/zhihu-api/feed/topstory/hot-lists/total",
+    url: "/zhihuApi/feed/topstory/hot-lists/total",
     method: "get",
     params,
   });
@@ -20,7 +20,7 @@ import request from "./axios";
  */
 export const getWeiBoList = (params) => {
   return request({
-    url: "/weibo-api/container/getIndex?containerid=106003type%3D25%26t%3D3%26disable_hot%3D1%26filter_type%3Drealtimehot",
+    url: "/weiboApi/container/getIndex?containerid=106003type%3D25%26t%3D3%26disable_hot%3D1%26filter_type%3Drealtimehot",
     method: "get",
     params,
   });

@@ -31,15 +31,15 @@ export default defineConfig({
     open: true,
     // 解决Chrome 里的请求报错 "CAUTION: Provisional headers are shown"
     proxy: {
-      '/zhihu-api': {
+      '/zhihuApi': {
         target: "https://www.zhihu.com/api/v3",
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/zhihu-api/, '')
+        rewrite: path => path.replace(/^\/zhihuApi/, '')
       },
-      '/weibo-api': {
+      '/weiboApi': {
         target: "https://m.weibo.cn/api",
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/weibo-api/, '')
+        rewrite: path => path.replace(/^\/weiboApi/, '')
       }
     },
     cors: true
