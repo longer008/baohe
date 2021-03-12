@@ -1,3 +1,11 @@
+## [0.0.11](https://github.com/longer008/baohe/compare/v0.0.10...v0.0.11) (2021-03-12)
+
+### Bug Fixes
+
+- test cors ([dc62ce8](https://github.com/longer008/baohe/commit/dc62ce8084aa8ff2288410a778449d66cce96d3a))
+- 线上调用接口错误 ([1fdca4c](https://github.com/longer008/baohe/commit/1fdca4c9fbe2f7c32e4abca71b4c65c74da6d563))
+- 还是有问题 ([311d38a](https://github.com/longer008/baohe/commit/311d38a3fa6554964e9e2131e5bf7d0c98165cab))
+
 ## [0.0.10](https://github.com/longer008/baohe/compare/v0.0.9...v0.0.10) (2021-03-11)
 
 ### Bug Fixes
