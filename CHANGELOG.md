@@ -1,3 +1,13 @@
+## [0.0.12](https://github.com/longer008/baohe/compare/v0.0.11...v0.0.12) (2021-03-15)
+
+### Bug Fixes
+
+- add withCredentials ([30aff52](https://github.com/longer008/baohe/commit/30aff5233828a9521aba181e052a46d8357f4beb))
+
+### Features
+
+- tepm commit ([ceaa779](https://github.com/longer008/baohe/commit/ceaa77920b329e73f693bff0e17f99b29f0a9dd2))
+
 ## [0.0.11](https://github.com/longer008/baohe/compare/v0.0.10...v0.0.11) (2021-03-12)
 
 ### Bug Fixes
