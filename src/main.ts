@@ -1,13 +1,20 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 // 全局引入
-import ElementPlus from "element-plus";
-import "element-plus/lib/theme-chalk/index.css";
+// import ElementPlus from "element-plus";
+// import {
+//   ElAlert,
+//   ElBacktop,
+//   ElBadge,
+//   ElButton,
+//   ElLoading,
+//   ElMessage,
+//   ElMessageBox,
+//   ElNotification,
+// } from "element-plus";
+// import "element-plus/lib/theme-chalk/index.css";
 import 'dayjs/locale/zh-cn'
-import locale from 'element-plus/lib/locale/lang/zh-cn'
-
-import "@/assets/style/normalize.css"
-import "@/assets/style/reset.scss"
+// import locale from 'element-plus/lib/locale/lang/zh-cn'
 
 import "@util/rem.ts"
 
@@ -15,7 +22,7 @@ import router from "./router";
 import store from "./store";
 
 const app = createApp(App);
-app.use(ElementPlus, { size: "small",locale });
+// app.use(ElementPlus, { size: "small",locale });
 
 
 // element-plus

@@ -1,6 +1,6 @@
 <template>
   <div class="fund-container">
-    fund
+    <p>Fund</p>
     <trend></trend>
   </div>
 </template>
@@ -25,6 +25,11 @@ export default {
   flex-direction: column;
   align-items: center;
   margin: 20px auto;
+  font-size: 14px;
+  p{
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
 </style>
 

@@ -8,6 +8,7 @@
         <router-link :to="'weibo'">微博</router-link>
         <router-link :to="'fund'">基金</router-link>
         <router-link :to="'joke'">笑话</router-link>
+         <router-link :to="'about'">关于</router-link>
       </nav>
 
       <router-view></router-view>
@@ -100,6 +101,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import "./assets/style/reset.scss";
+@import url("./assets/style/normalize.css");
 :root {
   --border-color: #ebebeb;
   --zhihu-color: #9fadc7;

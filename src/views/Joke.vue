@@ -13,6 +13,7 @@
 
 
 <script lang='ts'>
+import {ElNotification} from 'element-plus'
 import { getJokeText } from "@api/joke";
 import { reactive, ref, toRefs, onMounted, getCurrentInstance } from "vue";
 export default {
@@ -39,7 +40,12 @@ export default {
       ele.select();
       document.execCommand("copy"); // 执行浏览器复制命令
       // element notify
-      proxy.$notify({
+      // proxy.$notify({
+      //   title: "成功",
+      //   message: "复制成功",
+      //   type: "success",
+      // });
+       ElNotification({
         title: "成功",
         message: "复制成功",
         type: "success",

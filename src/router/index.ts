@@ -39,6 +39,14 @@ const routes:Array<RouteRecordRaw > = [
     },
     component: () => import("../views/Joke.vue"),
   },
+  {
+    path: "/about",
+    name: "about",
+    meta: {
+      title: "关于",
+    },
+    component: () => import("../views/About.vue"),
+  },
   // {
   //   path: "/user",
   //   name: "user",
