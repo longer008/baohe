@@ -44,7 +44,6 @@ export default {
         type: 'success',
         title: '成功',
         message: '复制成功',
-
       })
       //  ElNotification({
       //   title: "成功",
