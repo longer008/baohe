@@ -11,13 +11,14 @@
   </div>
 </template>
 
-
 <script lang='ts'>
 import { getJokeText } from '@api/joke'
 import { reactive, ref, toRefs, onMounted, getCurrentInstance } from 'vue'
 export default {
   setup() {
     // 获取当前vue 实例
+    console.log('111')
+
     const { proxy } = getCurrentInstance() as any
     const state = reactive({
       loading: false,
