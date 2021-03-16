@@ -53,10 +53,10 @@
     "vite-plugin-style-import": "^0.8.1"
   },
   "lint-staged": {
-    "*.js": [
+    "/src/*.js": [
       "prettier --write"
     ],
-    "*.ts": [
+    "/src/*.ts": [
       "eslint",
       "prettier --parser=typescript --write"
     ],
