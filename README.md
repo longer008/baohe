@@ -20,3 +20,13 @@
 > yarn husky install
 
 > npx husky init
+
+package.json中删除
+```
+"husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+
+  ```
