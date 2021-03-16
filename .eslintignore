@@ -1,6 +1,9 @@
 node_modules/
+dist/
+public/
+.*/
 ./*.js
 ./*.ts
 *.lock
 *.log
-./*.html
+*.html

@@ -8,13 +8,12 @@ const currentVersion = require('../package.json').version
 
 const versionIncrements = ['patch', 'minor', 'major']
 
-const inc = (i) => semver.inc(currentVersion, i)
+const inc = i => semver.inc(currentVersion, i)
 
-const bin = (name) => path.resolve(__dirname, `../node_modules/.bin/${name}`)
+// const bin = name => path.resolve(__dirname, `../node_modules/.bin/${name}`)
 const run = (bin, args, opts = {}) =>
   execa(bin, args, { stdio: 'inherit', ...opts })
-const step = (msg) => console.log(chalk.cyan(msg))
-
+const step = msg => console.log(chalk.cyan(msg))
 async function main() {
   let targetVersion
 
@@ -22,7 +21,7 @@ async function main() {
     type: 'select',
     name: 'release',
     message: 'Select release type',
-    choices: versionIncrements.map((i) => `${i} (${inc(i)})`).concat(['custom'])
+    choices: versionIncrements.map(i => `${i} (${inc(i)})`).concat(['custom']),
   })
 
   if (release === 'custom') {
@@ -31,7 +30,7 @@ async function main() {
         type: 'input',
         name: 'version',
         message: 'Input custom version',
-        initial: currentVersion
+        initial: currentVersion,
       })
     ).version
   } else {
@@ -45,7 +44,7 @@ async function main() {
   const { yes: tagOk } = await prompt({
     type: 'confirm',
     name: 'yes',
-    message: `Releasing v${targetVersion}. Confirm?`
+    message: `Releasing v${targetVersion}. Confirm?`,
   })
 
   if (!tagOk) {
@@ -106,4 +105,4 @@ function updatePackage(version) {
   fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n')
 }
 
-main().catch((err) => console.error(err))
+main().catch(err => console.error(err))

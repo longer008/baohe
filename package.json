@@ -5,6 +5,7 @@
   "scripts": {
     "lint": "eslint ./src --ext .js,.ts,.vue ",
     "lint-fix": "eslint --fix ./src --ext .vue,.js,.ts",
+    "fix-all": "eslint --fix ./ --ext .vue,.js,.ts",
     "dev": "vite",
     "build": "vuedx-typecheck . && vite build",
     "serve": "vite preview",

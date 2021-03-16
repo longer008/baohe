@@ -5,30 +5,31 @@ module.exports = {
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
-      tex: true
-    }
+      tex: true,
+    },
   },
   env: {
     browser: true,
-    node: true
+    node: true,
   },
   plugins: ['prettier', '@typescript-eslint'],
   extends: [
     'plugin:@typescript-eslint/recommended',
-    'plugin:vue/vue3-recommended'
+    'plugin:vue/vue3-recommended',
   ],
   // "ignorePatterns": ["node_modules/*"],
   rules: {
-    // element-plus 规则：https://github.com/element-plus/element-plus/blob/dev/.eslintrc.js#L26
+    // 复制的是element-plus 规则：https://github.com/element-plus/element-plus/blob/dev/.eslintrc.js#L26
     // js/ts
     'eol-last': 'error',
     'no-trailing-spaces': 'error',
     'comma-style': ['error', 'last'],
     'comma-dangle': ['error', 'always-multiline'],
+    '@typescript-eslint/no-var-requires': 0, //允许require引入
     quotes: [
       'error',
       'single',
-      { avoidEscape: true, allowTemplateLiterals: true }
+      { avoidEscape: true, allowTemplateLiterals: true },
     ],
     camelcase: ['error', { properties: 'never' }],
     semi: ['error', 'never'],
@@ -42,13 +43,13 @@ module.exports = {
       {
         multiline: {
           delimiter: 'none',
-          requireLast: false
+          requireLast: false,
         },
         singleline: {
           delimiter: 'semi',
-          requireLast: true
-        }
-      }
+          requireLast: true,
+        },
+      },
     ],
     // vue
     'vue/no-v-html': 'off',
@@ -59,18 +60,18 @@ module.exports = {
         html: {
           void: 'never',
           normal: 'never',
-          component: 'always'
-        }
-      }
+          component: 'always',
+        },
+      },
     ],
     'vue/max-attributes-per-line': [
       'error',
       {
         singleline: 3,
-        multiline: 1
-      }
+        multiline: 1,
+      },
     ],
     'vue/require-default-prop': 'off',
-    'vue/html-closing-bracket-spacing': 'error'
-  }
+    'vue/html-closing-bracket-spacing': 'error',
+  },
 }

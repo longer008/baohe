@@ -1,45 +1,48 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 // import vitePluginImp from "vite-plugin-imp"
-import styleImport from 'vite-plugin-style-import';
-import { resolve } from 'path';
+import styleImport from 'vite-plugin-style-import'
+import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/",
-  plugins: [vue(),
+  base: '/',
+  plugins: [
+    vue(),
     styleImport({
-      libs: [{
-        libraryName: 'element-plus',
-        esModule: true,
-        resolveStyle: (name) => {
-          return `element-plus/lib/theme-chalk/${name}.css`;
+      libs: [
+        {
+          libraryName: 'element-plus',
+          esModule: true,
+          resolveStyle: name => {
+            return `element-plus/lib/theme-chalk/${name}.css`
+          },
+          resolveComponent: name => {
+            return `element-plus/lib/${name}`
+          },
         },
-        resolveComponent: (name) => {
-          return `element-plus/lib/${name}`;
-        },
-      }]
-    })
+      ],
+    }),
   ],
   resolve: {
     alias: {
-      "@": resolve(__dirname, "src"),
-      "@com": resolve(__dirname, "src/components"),
-      "@api": resolve(__dirname, "src/api"),
-      "@util": resolve(__dirname, "src/util"),
-      "@views": resolve(__dirname, "src/views"),
-    }
+      '@': resolve(__dirname, 'src'),
+      '@com': resolve(__dirname, 'src/components'),
+      '@api': resolve(__dirname, 'src/api'),
+      '@util': resolve(__dirname, 'src/util'),
+      '@views': resolve(__dirname, 'src/views'),
+    },
   },
-  css:{
+  css: {
     postcss: {
       plugins: [
-          // require('autoprefixer'),
-          // require('tailwindcss'),
-          // require('postcss-nested'),
-          // require('postcss-simple-vars'),
-          // require('postcss-import')
-      ]
-  }
+        // require('autoprefixer'),
+        // require('tailwindcss'),
+        // require('postcss-nested'),
+        // require('postcss-simple-vars'),
+        // require('postcss-import')
+      ],
+    },
   },
   server: {
     port: 4000,
@@ -47,26 +50,26 @@ export default defineConfig({
     // 解决Chrome 里的请求报错 "CAUTION: Provisional headers are shown"
     proxy: {
       '/zhihuApi': {
-        target: "https://www.zhihu.com/api/v3/",
+        target: 'https://www.zhihu.com/api/v3/',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/zhihuApi/, '')
+        rewrite: path => path.replace(/^\/zhihuApi/, ''),
       },
       '/weiboApi': {
-        target: "https://m.weibo.cn/api/",
+        target: 'https://m.weibo.cn/api/',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/weiboApi/, '')
+        rewrite: path => path.replace(/^\/weiboApi/, ''),
       },
       '/jokeApi': {
-        target: "https://api.vvhan.com/api/",
+        target: 'https://api.vvhan.com/api/',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/jokeApi/, '')
-      }
+        rewrite: path => path.replace(/^\/jokeApi/, ''),
+      },
     },
-    cors: true
+    cors: true,
   },
   build: {
-    outDir:"dist",
-    assetsDir:"assets",
+    outDir: 'dist',
+    assetsDir: 'assets',
     sourcemap: false,
     // manifest: true,
     rollupOptions: {
@@ -79,5 +82,4 @@ export default defineConfig({
     },
     chunkSizeWarningLimit: 600, //默认500
   },
-
 })
