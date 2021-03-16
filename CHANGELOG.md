@@ -1,3 +1,9 @@
+## [0.0.16](https://github.com/longer008/baohe/compare/v0.0.15...v0.0.16) (2021-03-16)
+
+### Bug Fixes
+
+- update package.json ([e19e8ec](https://github.com/longer008/baohe/commit/e19e8ec6a2832f9535bf7fbddec770e0091055c5))
+
 ## [0.0.15](https://github.com/longer008/baohe/compare/v0.0.14...v0.0.15) (2021-03-16)
 
 ## [0.0.14](https://github.com/longer008/baohe/compare/v0.0.13...v0.0.14) (2021-03-16)
