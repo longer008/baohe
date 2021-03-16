@@ -5,7 +5,7 @@
   >
     <div class="news-number" :class="index < 3 ? 'top-three-num' : 'other-num'">
       {{ index + 1 }}
-      <div class="is-new" v-if="newsInfo.debut">新</div>
+      <div v-if="newsInfo.debut" class="is-new">新</div>
     </div>
     <a
       :href="
@@ -32,57 +32,54 @@
         class="news-desc common-pointer"
         :class="
           newsInfo.target.title.length > 22 &&
-          newsInfo.children[0].thumbnail !== ''
+            newsInfo.children[0].thumbnail !== ''
             ? 'text-overflow'
             : newsInfo.target.title.length > 33 &&
               newsInfo.children[0].thumbnail === ''
-            ? 'text-overflow'
-            : 'multiLine multline'
+              ? 'text-overflow'
+              : 'multiLine multline'
         "
       >
         {{ newsInfo.target.excerpt }}
       </p>
 
-      <div class="hot-box" v-show="!isPhone">
+      <div v-show="!isPhone" class="hot-box">
         <span> <i class="io io-huo"></i>{{ newsInfo.detail_text }}</span>
         <span class="share-box common-pointer">
-          <i class="io io-sharearrow"></i> 分享</span
-        >
+          <i class="io io-sharearrow"></i> 分享</span>
       </div>
     </a>
     <a
+      v-if="newsInfo.children[0].thumbnail"
       href=""
       class="news-img common-pointer"
-      v-if="newsInfo.children[0].thumbnail"
       :title="newsInfo.target.title"
     >
-      <img :src="newsInfo.children[0].thumbnail" alt="" srcset="" />
+      <img :src="newsInfo.children[0].thumbnail" alt="" srcset="">
     </a>
   </div>
 </template>
 
 <script lang="ts">
-import { useStore } from "vuex";
+// import { useStore } from 'vuex'
 import {
-  ref,
-  onMounted,
   defineComponent,
   watch,
-  computed,
-  reactive,
-  toRefs,
   inject,
-} from "vue";
+} from 'vue'
 export default defineComponent({
   props: {
     index: {
+      type:Number,
       default: 0,
     },
     hasNewsImg: {
+      type:Boolean,
       default: false,
     },
     newsInfo: {
-      default: {},
+      type:Object,
+      default: null,
     },
     // isPhone:{
     //   default:false
@@ -90,16 +87,16 @@ export default defineComponent({
   },
 
   setup() {
-    let isPhone:any = inject("isPhone");
+    let isPhone:any = inject('isPhone')
 
-    watch(isPhone, (value) => {
-      console.log(value);
-    });
+    watch(isPhone, value => {
+      console.log(value)
+    })
     return {
       isPhone,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

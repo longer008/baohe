@@ -8,11 +8,11 @@
         <router-link :to="'weibo'">微博</router-link>
         <router-link :to="'fund'">基金</router-link>
         <router-link :to="'joke'">笑话</router-link>
-         <router-link :to="'about'">关于</router-link>
+        <router-link :to="'about'">关于</router-link>
       </nav>
 
-      <router-view></router-view>
-      <back-top v-if="show2top"></back-top>
+      <router-view />
+      <back-top v-if="show2top" />
       <!-- <router-view class="router-view" v-slot="{ Component }">
         <transition :name="transitionName">
           <component :is="Component" />
@@ -25,8 +25,7 @@
 </template>
 
 <script lang="ts">
-
-import { useStore } from "vuex";
+import { useStore } from 'vuex'
 // import { useRouter } from "vue-router";
 import {
   ref,
@@ -34,11 +33,9 @@ import {
   toRefs,
   reactive,
   onMounted,
-  computed,
   provide,
-  inject,
-} from "vue";
-import BackTop from "@com/common/BackTop.vue";
+} from 'vue'
+import BackTop from '@com/common/BackTop.vue'
 export default defineComponent({
   components: {
     BackTop,
@@ -46,58 +43,60 @@ export default defineComponent({
 
   setup() {
     const state = reactive({
-      transitionName: "slide-left",
-      theme: "night",
+      transitionName: 'slide-left',
+      theme: 'night',
       scrollHeight:
         document.documentElement.scrollTop || document.body.scrollTop,
       // isPhone: <any>false,
       isFirst: true,
-    });
-    const store = useStore();
+    })
+    const store = useStore()
 
-    const show2top = ref(false);
+    const show2top = ref(false)
     // 监听滚动
     onMounted(() => {
-      handleSize();
-      window.addEventListener("scroll", handleScroll);
+      handleSize()
+      window.addEventListener('scroll', handleScroll)
       // 谷歌浏览器onresize事件会执行2次，这里加个标志位控制
-      window.addEventListener("resize", handleSize);
-    });
+      window.addEventListener('resize', handleSize)
+    })
 
     const handleScroll = () => {
       let scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop;
+        document.documentElement.scrollTop || document.body.scrollTop
       if (scrollTop >= 700) {
-        show2top.value = true;
+        show2top.value = true
       } else {
-        show2top.value = false;
+        show2top.value = false
       }
-    };
-    let isPhone = ref(false);
+    }
+    let isPhone = ref(false)
     const handleSize = () => {
       let width =
-        document.documentElement.clientWidth || document.body.clientWidth;
+        document.documentElement.clientWidth || document.body.clientWidth
       if (state.isFirst) {
         if (width > 375) {
-          isPhone.value = false;
-          store.commit("updateDevice", false);
+          isPhone.value = false
+          store.commit('updateDevice', false)
         } else {
-          isPhone.value = true;
-          store.commit("updateDevice", true);
+          isPhone.value = true
+          store.commit('updateDevice', true)
         }
-        state.isFirst = false;
+        state.isFirst = false
         //0.5秒之后将标志位重置（Chrome的window.onresize默认执行两次）
         setTimeout(() => {
-          state.isFirst = true;
-        }, 100);
+          state.isFirst = true
+        }, 100)
       }
-    };
+    }
     // 依赖注入
-    provide("isPhone", isPhone);
+    provide('isPhone', isPhone)
+    const provideTest='来自app.vue的provide'
+    provide('provideTest', provideTest)
 
-    return { ...toRefs(state), show2top };
+    return { ...toRefs(state), show2top }
   },
-});
+})
 </script>
 
 <style lang="scss">

@@ -2,34 +2,36 @@
   <div class="list-item" :title="item.desc">
     <a class="" :href="item.scheme">
       <span class="img-icon">
-        <img :src="item.pic" alt="" srcset="" />
+        <img :src="item.pic" alt="" srcset="">
       </span>
       <span class="title-box">
         <span class="main-text">{{ item.desc }}</span>
-        <span class="sub-text" v-if="item.desc_extr">{{ item.desc_extr }}</span>
+        <span v-if="item.desc_extr" class="sub-text">{{ item.desc_extr }}</span>
       </span>
-      <span class="img-icon" v-if="item.icon">
-        <img :src="item.icon" alt="" srcset="" />
+      <span v-if="item.icon" class="img-icon">
+        <img :src="item.icon" alt="" srcset="">
       </span>
     </a>
   </div>
 </template>
 
 <script lang='ts'>
-import { onMounted, defineComponent } from "vue";
+import {  defineComponent } from 'vue'
 export default defineComponent({
   props: {
     key: {
+      type: Number,
       default: 0,
     },
     item: {
-      default: {},
+      type:Object,
+      default: null,
     },
   },
   setup() {
-    return {};
+    return {}
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

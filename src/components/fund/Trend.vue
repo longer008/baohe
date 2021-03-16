@@ -2,14 +2,19 @@
   <div class="trend">
     走势图
     <div class="swiper-container">
-      <img :src="baseUrl+item+'.png'" alt="" v-for="item in fundList" :key="item">
+      <img
+        v-for="item in fundList"
+        :key="item"
+        :src="baseUrl+item+'.png'"
+        alt=""
+      >
     </div>
   </div>
 </template>
 
 <script lang='ts'>
-import {getTrendImg} from '@api/fund'
-import { reactive, toRefs } from 'vue'
+// import { getTrendImg } from '@api/fund'
+import { reactive, toRefs ,inject } from 'vue'
 export default {
   setup(){
     const state=reactive({
@@ -18,14 +23,14 @@ export default {
       //   size:"210x140",
       //   fundId:"1399001"
       // },
-      fundList:["0000001","1399001","1399300"],
+      fundList:['0000001','1399001','1399300'],
     })
-    const getList=async ()=>{
 
-      // let data=await getTrendImg()
-    }
+    let testInject=inject('provideTest')
+    console.log(testInject)
+
     return{
-      ...toRefs(state)
+      ...toRefs(state),
     }
   },
 }

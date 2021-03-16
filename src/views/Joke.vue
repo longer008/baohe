@@ -3,61 +3,62 @@
     <h3>开心一刻(点击下面文本复制)</h3>
     <textarea
       ref="jokeText"
-      class="joke-text"
       v-model="text"
+      class="joke-text"
       @click="handleCopy"
     ></textarea>
-    <img src="https://api.vvhan.com/api/ip" alt="天气" />
+    <img src="https://api.vvhan.com/api/ip" alt="天气">
   </div>
 </template>
 
 
 <script lang='ts'>
-import {ElNotification} from 'element-plus'
-import { getJokeText } from "@api/joke";
-import { reactive, ref, toRefs, onMounted, getCurrentInstance } from "vue";
+// import {ElNotification} from 'element-plus'
+import { getJokeText } from '@api/joke'
+import { reactive, ref, toRefs, onMounted, getCurrentInstance } from 'vue'
 export default {
   setup() {
-    // vue 实例
-    const { proxy } = getCurrentInstance() as any;
+    // 获取当前vue 实例
+    const { proxy } = getCurrentInstance() as any
     const state = reactive({
       loading: false,
-      text: <any>"",
-    });
+      text: '',
+    })
     // 请求
     const getText = async () => {
-      state.loading = true;
-      let data: any = await getJokeText();
-      state.text = data.joke;
-    };
+      state.loading = true
+      let data: any = await getJokeText()
+      state.text = data.joke
+    }
     onMounted(() => {
-      getText();
-    });
-    const jokeText = ref(null);
+      getText()
+    })
+    const jokeText = ref(null)
     const handleCopy = () => {
       // let text=state.text
-      let ele: any = jokeText.value;
-      ele.select();
-      document.execCommand("copy"); // 执行浏览器复制命令
+      let ele: any = jokeText.value
+      ele.select()
+      document.execCommand('copy') // 执行浏览器复制命令
       // element notify
-      // proxy.$notify({
+      proxy.$notify({
+        type: 'success',
+        title: '成功',
+        message: '复制成功',
+
+      })
+      //  ElNotification({
       //   title: "成功",
       //   message: "复制成功",
       //   type: "success",
       // });
-       ElNotification({
-        title: "成功",
-        message: "复制成功",
-        type: "success",
-      });
-    };
+    }
     return {
       ...toRefs(state),
       jokeText,
       handleCopy,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

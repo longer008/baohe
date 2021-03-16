@@ -6,24 +6,25 @@
 
       <pre>
       <!-- <code> -->
-<p class="template"> {{code.html}}</p>
-<p class="javascript">{{code.js }}</p>
-<p class="css">{{code.css}}</p>
+<p class="template"> {{ code.html }}</p>
+<p class="javascript">{{ code.js }}</p>
+<p class="css">{{ code.css }}</p>
       <!-- </code> -->
       </pre>
     </details>
+    <el-button :type="btnType">按钮测试</el-button>
   </div>
 </template>
 
 <script lang='ts'>
 // import { translate } from "@util/translateCode";
-import { computed, reactive, Ref, ref, toRefs, onMounted } from "vue";
+import {  reactive,   toRefs } from 'vue'
 export default {
   setup() {
     const state = reactive({
-      color: "green",
+      color: 'green',
       code: {
-        html: "<h1>{{ color }}</h1>",
+        html: '<h1>{{ color }}</h1>',
         js: `
         import { reactive, toRefs } from "vue";
         export default {
@@ -39,16 +40,17 @@ export default {
         `,
         css:`h1 {
                   color: v-bind(color);
-}`
+}`,
       },
-    });
+      btnType:'primary',
+    })
 
     // let color1=ref("yellow")
     return {
       ...toRefs(state),
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss">

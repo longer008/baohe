@@ -1,7 +1,12 @@
 <template>
-  <div class="back-to-top" role="" data-tooltop="回到顶部" @click="back2top">
+  <div
+    class="back-to-top"
+    role=""
+    data-tooltop="回到顶部"
+    @click="back2top"
+  >
     <!-- <button class="back-button"> -->
-      <i class="io io-arrowup"></i>
+    <i class="io io-arrowup"></i>
     <!-- </button> -->
   </div>
 </template>
@@ -10,13 +15,13 @@
 export default {
   setup() {
     const back2top = () => {
-      window.scrollTo(0, 0);
-    };
+      window.scrollTo(0, 0)
+    }
     return {
       back2top,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

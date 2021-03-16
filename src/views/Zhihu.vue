@@ -2,27 +2,23 @@
   <div class="hot-list">
     <card
       v-for="(item, index) in newList"
-      :news-info="item"
       :key="item.id"
+      :news-info="item"
       :index="index"
-
-    ></card>
+    />
   </div>
 </template>
 
-<script lang='ts'>
-import { useStore } from "vuex";
-import { getZhiHuList } from "@api/index";
+<script lang="ts">
+// import { useStore } from 'vuex'
+import { getZhiHuList } from '@api/index'
 import {
-  ref,
   defineComponent,
   toRefs,
   reactive,
-  watch,
   onMounted,
-  computed,
-} from "vue";
-import Card from "@com/common/Card.vue";
+} from 'vue'
+import Card from '@com/common/Card.vue'
 export default defineComponent({
   components: {
     Card,
@@ -38,26 +34,27 @@ export default defineComponent({
       loading: false,
       // 新闻列表
       newList: [],
-      isPhone:<any>false,
-    });
+      // isPhone:false,
+    })
+
     // 监听滚动
     onMounted(() => {
       // 初始请求数据
-      getList();
+      getList()
       // let newList = localStorage.getItem("newList");
       // newList ? (state.newList = JSON.parse(newList)) : getList();
-    });
+    })
+
     // 获取新闻列表
     const getList = async (params = state.params) => {
-
-      state.loading = true;
-      const data = await getZhiHuList(params);
-      state.params = params;
-      let newList = data.data;
+      state.loading = true
+      const data = await getZhiHuList(params)
+      state.params = params
+      let newList = data.data
       // localStorage.setItem("newList", JSON.stringify(newList));
-      state.newList = newList;
-      state.loading = false;
-    };
+      state.newList = newList
+      state.loading = false
+    }
 
     // const store=useStore()
     // watch(
@@ -68,9 +65,9 @@ export default defineComponent({
     //   }
     // );
 
-    return { ...toRefs(state) };
+    return { ...toRefs(state) }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
@@ -81,4 +78,3 @@ export default defineComponent({
   margin: 20px auto;
 }
 </style>
-
