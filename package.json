@@ -59,7 +59,7 @@
     "*.html": [
       "prettier --write"
     ],
-    "*.{js,ts,vue}": "eslint --fix"
+    "*.{js,ts,vue}": "yarn lint-fix"
   },
   "browserslist": [
     "> 1%",
