@@ -13,7 +13,6 @@
 
 
 <script lang='ts'>
-// import {ElNotification} from 'element-plus'
 import { getJokeText } from '@api/joke'
 import { reactive, ref, toRefs, onMounted, getCurrentInstance } from 'vue'
 export default {
@@ -33,6 +32,7 @@ export default {
     onMounted(() => {
       getText()
     })
+
     const jokeText = ref(null)
     const handleCopy = () => {
       // let text=state.text
