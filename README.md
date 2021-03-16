@@ -15,3 +15,7 @@
 - [ ] 疫情
 - [ ] 基金
 - [x] 移动端适配
+
+
+### 添加完`husky` 需要
+> yarn husky install
