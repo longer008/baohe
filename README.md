@@ -32,3 +32,5 @@ package.json中删除
   },
 
   ```
+
+### 版本  多push几次然后再生成tag
