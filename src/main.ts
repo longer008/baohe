@@ -64,9 +64,6 @@ const env=import.meta.env
 console.log(env)
 
 app.config.performance=true
-// env==="development"?app.config.devtools=true
-console.log(app.config.performance)
-
 
 app.config.errorHandler=(err,vm,info)=>{
   console.log('全局错误信息：'+info)

@@ -1,7 +1,7 @@
 <template>
   <div class="hot-list-weibo">
     <h2 class="tips">实时热点，每分钟更新一次</h2>
-    <list v-for="(item, index) in newList" :key="index" :item="item" />
+    <List v-for="(item, index) in newList" :key="index" :item="item" />
   </div>
 </template>
 

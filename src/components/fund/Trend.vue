@@ -7,7 +7,7 @@
         :key="item"
         :src="baseUrl+item+'.png'"
         alt=""
-      >
+      />
     </div>
   </div>
 </template>

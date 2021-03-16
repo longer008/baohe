@@ -51,14 +51,14 @@ module.exports = {
         },
       },
     ],
-    // vue
+    // vue  eslint-plugin-vue  https://eslint.vuejs.org/rules/html-self-closing.html
     'vue/no-v-html': 'off',
     'vue/singleline-html-element-content-newline': 'off',
     'vue/html-self-closing': [
       'error',
       {
         html: {
-          void: 'never',
+          void: 'always',
           normal: 'never',
           component: 'always',
         },
@@ -68,7 +68,11 @@ module.exports = {
       'error',
       {
         singleline: 3,
-        multiline: 1,
+        multiline: {
+          max:1,
+          allowFirstLine:true,
+        },
+
       },
     ],
     'vue/require-default-prop': 'off',

@@ -1,6 +1,6 @@
 <template>
   <div class="hot-list">
-    <card
+    <Card
       v-for="(item, index) in newList"
       :key="item.id"
       :news-info="item"

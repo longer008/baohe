@@ -55,30 +55,27 @@
       class="news-img common-pointer"
       :title="newsInfo.target.title"
     >
-      <img :src="newsInfo.children[0].thumbnail" alt="" srcset="">
+      <img :src="newsInfo.children[0].thumbnail" alt="" srcset="" />
     </a>
   </div>
 </template>
 
 <script lang="ts">
 // import { useStore } from 'vuex'
-import {
-  defineComponent,
-  watch,
-  inject,
-} from 'vue'
+import { defineComponent, watch, inject } from 'vue'
 export default defineComponent({
   props: {
     index: {
-      type:Number,
+      type: Number,
+
       default: 0,
     },
     hasNewsImg: {
-      type:Boolean,
+      type: Boolean,
       default: false,
     },
     newsInfo: {
-      type:Object,
+      type: Object,
       default: null,
     },
     // isPhone:{
@@ -87,7 +84,7 @@ export default defineComponent({
   },
 
   setup() {
-    let isPhone:any = inject('isPhone')
+    let isPhone: any = inject('isPhone')
 
     watch(isPhone, value => {
       console.log(value)
@@ -277,4 +274,3 @@ a {
   cursor: pointer;
 }
 </style>
-

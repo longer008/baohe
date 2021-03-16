@@ -7,7 +7,7 @@
       class="joke-text"
       @click="handleCopy"
     ></textarea>
-    <img src="https://api.vvhan.com/api/ip" alt="天气">
+    <img src="https://api.vvhan.com/api/ip" alt="天气" />
   </div>
 </template>
 

@@ -3,7 +3,6 @@
     <h1>{{ color }}</h1>
     <details class="details">
       <summary>style变量测试</summary>
-
       <pre>
       <!-- <code> -->
 <p class="template"> {{ code.html }}</p>
