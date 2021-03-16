@@ -1,3 +1,10 @@
+## [0.0.13](https://github.com/longer008/baohe/compare/v0.0.12...v0.0.13) (2021-03-16)
+
+### Features
+
+- add eslint and update some package ([e2b926a](https://github.com/longer008/baohe/commit/e2b926a466063ad05c6136f0f5997b5de7d0604a))
+- add lint-staged ([6b4fb42](https://github.com/longer008/baohe/commit/6b4fb420c906dafe16e9b3013311bcbd35424624))
+
 ## [0.0.12](https://github.com/longer008/baohe/compare/v0.0.11...v0.0.12) (2021-03-15)
 
 ### Bug Fixes
