@@ -17,6 +17,8 @@
 - [x] 移动端适配
 
 ### 添加完`husky` 需要
+husky版本5.*,git版本2.9+
+
 > yarn husky install
 
 > npx husky init
