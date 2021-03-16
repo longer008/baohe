@@ -60,7 +60,6 @@ app.use(router).use(store).mount('#app')
 console.log(import.meta.env.BASE_URL)
 console.log(import.meta.env.DEV)
 
-
 const env=import.meta.env
 console.log(env)
 
