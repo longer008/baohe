@@ -1,6 +1,6 @@
 {
   "name": "baohe",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "private": false,
   "scripts": {
     "lint": "eslint ./src --ext .js,.ts,.vue ",
