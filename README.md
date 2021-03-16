@@ -19,4 +19,5 @@
 
 ### 添加完`husky` 需要
 > yarn husky install
+
 > npx husky init
