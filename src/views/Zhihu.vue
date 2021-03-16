@@ -55,16 +55,6 @@ export default defineComponent({
       state.newList = newList
       state.loading = false
     }
-
-    // const store=useStore()
-    // watch(
-    //   () => store.state.isPhone,
-    //   (value,pre) => {
-    //     console.log(value,pre);
-    //     state.isPhone=value
-    //   }
-    // );
-
     return { ...toRefs(state) }
   },
 })
