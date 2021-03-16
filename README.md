@@ -17,7 +17,7 @@
 - [x] 移动端适配
 
 ### 添加完`husky` 需要
-husky版本5.*,git版本2.9+
+husky版本5.*,git版本2.9+ , 解决方案：https://typicode.github.io/husky/#/?id=yarn-on-windows
 
 > yarn husky install
 
