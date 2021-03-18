@@ -47,7 +47,7 @@
     ref="refDialog"
     :title="title"
     :open="dialogVisible"
-    @closed="closeDialog"
+    @closed="closeDialog($event)"
   >
     <template #header>
       <div>header</div>
@@ -128,7 +128,8 @@ export default defineComponent({
       dialogVisible: false,
       title: 'dialog测试',
     })
-    // const refDialog = ref()
+    const refDialog = ref()
+
     // const { proxy } = getCurrentInstance()
 
     const openDialog = () => {
@@ -137,8 +138,9 @@ export default defineComponent({
       // proxy.$this.$refs.dialog.onOpen()
       // refDialog.value.onOpen()
     }
-    const closeDialog = () => {
-      state.dialogVisible = false
+    const closeDialog = e => {
+
+      state.dialogVisible = e
       // document.querySelector('#dialog')?.classList.remove('z1')
     }
     return {

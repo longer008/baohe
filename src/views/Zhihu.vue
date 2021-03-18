@@ -15,6 +15,7 @@ import { getZhiHuList } from '@api/index'
 import {
   defineComponent,
   toRefs,
+  ref,
   reactive,
   onMounted,
 } from 'vue'
@@ -44,7 +45,6 @@ export default defineComponent({
       // let newList = localStorage.getItem("newList");
       // newList ? (state.newList = JSON.parse(newList)) : getList();
     })
-
     // 获取新闻列表
     const getList = async (params = state.params) => {
       state.loading = true

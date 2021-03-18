@@ -68,21 +68,18 @@ export default {
       //   type: 'success',
       //   iconClass: '',
       // })
-      proxy.$msgbox.confirm(
-        'msgbox测试--message',
-        'msgbox测试--title',
-        {
-          confirmButtonText: '明白了',
-          type: 'success',
-          iconClass: 'el-icon-info',
-          callback: action => {
-            proxy.$message({
-              type: 'info',
-              message: `action:${action}`,
-            })
-          },
-        },
-      )
+
+      // proxy.$msgbox.confirm('msgbox测试--message', 'msgbox测试--title', {
+      //   confirmButtonText: '明白了',
+      //   type: 'success',
+      //   iconClass: 'el-icon-info',
+      //   callback: action => {
+      //     proxy.$message({
+      //       type: 'info',
+      //       message: `action:${action}`,
+      //     })
+      //   },
+      // })
       state.openAlert = true
     })
 

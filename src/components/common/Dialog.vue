@@ -48,12 +48,14 @@ export default {
     // 子组件触发，父组件实际执行
     const closeDialog = () => {
       document.querySelector('#dialog')?.classList.remove('z1')
-      emit('closed')
+      emit('closed',false)
     }
+
     return {
       ...toRefs(state),
       onOpen,
       closeDialog,
+
     }
   },
 }

@@ -85,7 +85,6 @@ export default defineComponent({
 
   setup() {
     let isPhone: any = inject('isPhone')
-
     watch(isPhone, value => {
       console.log(value)
     })
