@@ -15,6 +15,7 @@ export default defineConfig({
           libraryName: 'element-plus',
           esModule: true,
           resolveStyle: name => {
+            console.log(name)
             return `element-plus/lib/theme-chalk/${name}.css`
           },
           resolveComponent: name => {
@@ -29,7 +30,8 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
       '@com': resolve(__dirname, 'src/components'),
       '@api': resolve(__dirname, 'src/api'),
-      '@util': resolve(__dirname, 'src/util'),
+      '@hooks': resolve(__dirname, 'src/hooks'),
+      '@utils': resolve(__dirname, 'src/utils'),
       '@views': resolve(__dirname, 'src/views'),
     },
   },

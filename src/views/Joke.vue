@@ -1,28 +1,49 @@
 <template>
   <div class="joke-container">
     <h3>开心一刻(点击下面文本复制)</h3>
-    <textarea
-      ref="jokeText"
-      v-model="text"
-      class="joke-text"
-      @click="handleCopy"
-    ></textarea>
+    <Suspense>
+      <template #default>
+        <textarea
+          ref="jokeText"
+          v-model="text"
+          class="joke-text"
+          @click="handleCopy"
+        ></textarea>
+      </template>
+      <template #fallback>
+        <div>Loading...</div>
+      </template>
+    </Suspense>
+    <!-- <ElAlert
+      title="测试"
+      description="alert测试"
+      type="success"
+      closeText="关闭"
+      v-show="openAlert"
+
+      >ElAlert测试</ElAlert
+    > -->
+
     <img src="https://api.vvhan.com/api/ip" alt="天气" />
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
+// import { ElAlert } from 'element-plus'
 import { getJokeText } from '@api/joke'
 import { reactive, ref, toRefs, onMounted, getCurrentInstance } from 'vue'
 export default {
+  components: {
+    // ElAlert,
+  },
   setup() {
     // 获取当前vue 实例
-    console.log('111')
+    const { proxy } = getCurrentInstance()
 
-    const { proxy } = getCurrentInstance() as any
     const state = reactive({
       loading: false,
       text: '',
+      openAlert: false,
     })
     // 请求
     const getText = async () => {
@@ -31,7 +52,38 @@ export default {
       state.text = data.joke
     }
     onMounted(() => {
-      getText()
+      // 测试Suspense
+      setTimeout(() => {
+        getText()
+      }, 1000)
+      // proxy.$message({
+      //   message: 'proxy.$message测试',
+      //   type: 'success',
+      //   duration: 5000,
+      // })
+      // proxy.$msgbox.prompt({
+      //   // action: 'confirm',
+      //   message: 'msgbox测试',
+      //   title: 'msgbox测试',
+      //   type: 'success',
+      //   iconClass: '',
+      // })
+      proxy.$msgbox.confirm(
+        'msgbox测试--message',
+        'msgbox测试--title',
+        {
+          confirmButtonText: '明白了',
+          type: 'success',
+          iconClass: 'el-icon-info',
+          callback: action => {
+            proxy.$message({
+              type: 'info',
+              message: `action:${action}`,
+            })
+          },
+        },
+      )
+      state.openAlert = true
     })
 
     const jokeText = ref(null)
@@ -46,11 +98,11 @@ export default {
         title: '成功',
         message: '复制成功',
       })
-      //  ElNotification({
-      //   title: "成功",
-      //   message: "复制成功",
-      //   type: "success",
-      // });
+      // ElNotification({
+      //   title: '成功',
+      //   message: '复制成功',
+      //   type: 'error',
+      // })
     }
     return {
       ...toRefs(state),
@@ -111,4 +163,3 @@ img {
 //   }
 // }
 </style>
-

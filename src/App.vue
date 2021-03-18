@@ -12,7 +12,8 @@
       </nav>
 
       <router-view />
-      <back-top v-if="show2top" />
+      <ElBacktop />
+      <!-- <back-top v-if="show2top" /> -->
       <!-- <router-view class="router-view" v-slot="{ Component }">
         <transition :name="transitionName">
           <component :is="Component" />
@@ -26,19 +27,14 @@
 
 <script lang="ts">
 import { useStore } from 'vuex'
+import { ElBacktop } from 'element-plus'
 // import { useRouter } from "vue-router";
-import {
-  ref,
-  defineComponent,
-  toRefs,
-  reactive,
-  onMounted,
-  provide,
-} from 'vue'
-import BackTop from '@com/common/BackTop.vue'
+import { ref, defineComponent, toRefs, reactive, onMounted, provide } from 'vue'
+// import BackTop from '@com/common/BackTop.vue'
 export default defineComponent({
   components: {
-    BackTop,
+    // BackTop,
+    ElBacktop,
   },
 
   setup() {
@@ -91,7 +87,7 @@ export default defineComponent({
     }
     // 依赖注入
     provide('isPhone', isPhone)
-    const provideTest='来自app.vue的provide'
+    const provideTest = '来自app.vue的provide'
     provide('provideTest', provideTest)
 
     return { ...toRefs(state), show2top }
@@ -100,8 +96,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "./assets/style/reset.scss";
-@import url("./assets/style/normalize.css");
+@import './assets/style/reset.scss';
+@import url('./assets/style/normalize.css');
 :root {
   --border-color: #ebebeb;
   --zhihu-color: #9fadc7;
