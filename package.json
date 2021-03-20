@@ -3,7 +3,7 @@
   "version": "0.0.16",
   "private": false,
   "scripts": {
-    "service":"nodemon ./service/index.js localhost 7002",
+    "service":"nohup nodemon ./service/index.js localhost 7002",
     "lint": "eslint ./src --ext .js,.ts,.vue ",
     "lint-fix": "eslint --fix ./src --ext .vue,.js,.ts",
     "fix-all": "eslint --fix ./ --ext .vue,.js,.ts",
