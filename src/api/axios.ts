@@ -3,8 +3,9 @@ import axios from 'axios'
 const config = {
   timeout: 60 * 1000 * 2,
   withCredentials: true,
-  baseURL: '',
+  baseURL: '/',
 }
+import.meta.env.DEV?config.baseURL='/weiboApi':'https://m.weibo.cn/'
 
 const _axios = axios.create(config)
 

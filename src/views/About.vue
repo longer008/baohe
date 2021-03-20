@@ -23,17 +23,6 @@
         <p class="css">{{ code.css }}</p>
       </pre>
     </details>
-    <el-button :type="btnType" @click="modalOpen = true">
-      Open full screen modal! (With teleport!)
-    </el-button>
-    <teleport to="body">
-      <div v-if="modalOpen" class="modal">
-        <div>
-          I'm a teleported modal! (My parent is "body")
-          <el-button type="info" @click="modalOpen = false">Close</el-button>
-        </div>
-      </div>
-    </teleport>
     <h2>hooks测试</h2>
     <p>count: {{ count }}</p>
     <p>倍数： {{ multiple }}</p>

@@ -52,17 +52,17 @@ export default defineConfig({
     // 解决Chrome 里的请求报错 "CAUTION: Provisional headers are shown"
     proxy: {
       '/zhihuApi': {
-        target: 'https://www.zhihu.com/api/v3/',
+        target: 'https://www.zhihu.com',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/zhihuApi/, ''),
       },
       '/weiboApi': {
-        target: 'https://m.weibo.cn/api/',
+        target: 'https://m.weibo.cn',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/weiboApi/, ''),
       },
       '/jokeApi': {
-        target: 'https://api.vvhan.com/api/',
+        target: 'https://api.vvhan.com',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/jokeApi/, ''),
       },
