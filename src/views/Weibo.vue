@@ -40,13 +40,13 @@ export default {
 
     onMounted(() => {
       getList()
-      state.timer=setInterval(getList,60000)
+      // state.timer=setInterval(getList,60000)
       // 初始请求数据
       // let newList = localStorage.getItem("weiboList");
       // newList ? (state.newList = JSON.parse(newList)) : getList();
     })
     onUnmounted(() => {
-      clearTimeout(state.timer)
+      // clearTimeout(state.timer)
     })
     return { ...toRefs(state) }
   },
