@@ -1,0 +1,1 @@
+import{_ as t}from"./axios.be87a7a6.js";const a=a=>t({url:"/zhihuApi/api/v3/feed/topstory/hot-lists/total",method:"get",params:a}),e=a=>t({url:"/api/container/getIndex?containerid=106003type%3D25%26t%3D3%26disable_hot%3D1%26filter_type%3Drealtimehot",method:"get",params:a});export{e as a,a as g};
