@@ -17,8 +17,7 @@ jobs:
 
       - name: Install
         run: yarn config set registry https://registry.npm.taobao.org && yarn
-      - name: Start Service
-        run: yarn service
+
       - name: Build
         run: yarn build
 
