@@ -6,7 +6,7 @@ import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/baohe',
+  base: '/baohe/',
   plugins: [
     vue(),
     styleImport({
@@ -51,21 +51,26 @@ export default defineConfig({
     open: true,
     // 解决Chrome 里的请求报错 "CAUTION: Provisional headers are shown"
     proxy: {
-      '/zhihuApi': {
-        target: 'https://www.zhihu.com',
+      '/api': {
+        target: 'http://localhost:7002/',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/zhihuApi/, ''),
+        // rewrite: path => path.replace(/^\/api/, ''),
       },
-      '/weiboApi': {
-        target: 'https://m.weibo.cn',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/weiboApi/, ''),
-      },
-      '/jokeApi': {
-        target: 'https://api.vvhan.com',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/jokeApi/, ''),
-      },
+      // '/zhihuApi': {
+      //   target: 'https://www.zhihu.com',
+      //   changeOrigin: true,
+      //   rewrite: path => path.replace(/^\/zhihuApi/, ''),
+      // },
+      // '/weiboApi': {
+      //   target: 'https://m.weibo.cn',
+      //   changeOrigin: true,
+      //   rewrite: path => path.replace(/^\/weiboApi/, ''),
+      // },
+      // '/jokeApi': {
+      //   target: 'https://api.vvhan.com',
+      //   changeOrigin: true,
+      //   rewrite: path => path.replace(/^\/jokeApi/, ''),
+      // },
     },
     cors: true,
   },

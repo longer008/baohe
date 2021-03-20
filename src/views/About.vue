@@ -27,8 +27,8 @@
     <p>count: {{ count }}</p>
     <p>倍数： {{ multiple }}</p>
     <div>
-      <button @click="increase()">加1</button>
-      <button @click="decrease()">减一</button>
+      <el-button type="success" @click="increase()">加1</el-button>
+      <el-button type="primary" @click="decrease()">减一</el-button>
     </div>
   </div>
   <Dialog
