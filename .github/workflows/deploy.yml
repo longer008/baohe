@@ -14,10 +14,10 @@ jobs:
       - name: Setup Node.js v14.x
         uses: actions/setup-node@v1
         with:
-          node-version: "14.x"
+          node-version: '14.x'
 
       # - name: Install
-        # run: yarn config set registry https://registry.npm.taobao.org && yarn
+      # run: yarn config set registry https://registry.npm.taobao.org && yarn
 
       - name: Build
         run: yarn build
@@ -30,8 +30,7 @@ jobs:
       #     user_name: ${{ secrets.MY_USER_NAME }}
       #     user_email: ${{ secrets.MY_USER_EMAIL }}
       #     commit_message: Update Vite-Vue 3.x-TypeScript-Element Plus-Starter Template
-
-       - name: Deploy to Server
+      - name: Deploy to Server
         uses: hengkx/ssh-deploy@v1.0.1
         with:
           USERNAME: ${{ secrets.DEPLOY_USER }}
