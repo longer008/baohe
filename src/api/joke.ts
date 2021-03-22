@@ -2,7 +2,7 @@ import request from './axios'
 
 export const getJokeText = () => {
   return request({
-    url: '/joke',
+    url: '/api/joke',
     method: 'get',
   })
 }

@@ -7,7 +7,7 @@ import request from './axios'
  */
 export const getZhiHuList = params => {
   return request({
-    url: '/zhihu',
+    url: '/api/zhihu',
     method: 'get',
     params,
   })
@@ -20,7 +20,7 @@ export const getZhiHuList = params => {
  */
 export const getWeiBoList = params => {
   return request({
-    url: '/weibo',
+    url: '/api/weibo',
     method: 'get',
     params,
   })

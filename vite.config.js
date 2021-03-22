@@ -58,13 +58,13 @@ export default defineConfig({
   },
   server: {
     port: 4000,
-    open: true,
+    open: false,
     // 解决Chrome 里的请求报错 "CAUTION: Provisional headers are shown"
     proxy: {
       '/api': {
-        target: 'http://localhost:7002/',
+        target: 'http://localhost:7002/api/',
         changeOrigin: true,
-        // rewrite: path => path.replace(/^\/api/, ''),
+        rewrite: path => path.replace(/^\/api/, ''),
       },
       // '/zhihuApi': {
       //   target: 'https://www.zhihu.com',

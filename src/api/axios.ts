@@ -3,7 +3,7 @@ import axios from 'axios'
 const config = {
   timeout: 60 * 1000 * 2,
   withCredentials: true,
-  baseURL: '/api',
+  baseURL: '/',
 }
 
 const _axios = axios.create(config)
