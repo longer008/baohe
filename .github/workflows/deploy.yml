@@ -1,4 +1,4 @@
-name: deploy-gh-pages
+name: SSH Auto Deploy
 
 on:
   push:
@@ -8,24 +8,35 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Setup Node.js v14.x
         uses: actions/setup-node@v1
         with:
           node-version: "14.x"
 
-      - name: Install
-        run: yarn config set registry https://registry.npm.taobao.org && yarn
+      # - name: Install
+        # run: yarn config set registry https://registry.npm.taobao.org && yarn
 
       - name: Build
         run: yarn build
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      # - name: Deploy
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     publish_dir: ./dist
+      #     github_token: ${{ secrets.GH_PAGES_DEPLOY }}
+      #     user_name: ${{ secrets.MY_USER_NAME }}
+      #     user_email: ${{ secrets.MY_USER_EMAIL }}
+      #     commit_message: Update Vite-Vue 3.x-TypeScript-Element Plus-Starter Template
+
+       - name: Deploy to Server
+        uses: hengkx/ssh-deploy@v1.0.1
         with:
-          publish_dir: ./dist
-          github_token: ${{ secrets.GH_PAGES_DEPLOY }}
-          user_name: ${{ secrets.MY_USER_NAME }}
-          user_email: ${{ secrets.MY_USER_EMAIL }}
-          commit_message: Update Vite-Vue 3.x-TypeScript-Element Plus-Starter Template
+          USERNAME: ${{ secrets.DEPLOY_USER }}
+          PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
+          HOST: ${{ secrets.REMOTE_HOST }}
+          SOURCE: 'dist'
+          TARGET: ${{secrets.REMOTE_TARGET}}
+          # AFTER_COMMAND: 'npm run stop && npm install --production && npm run start'
