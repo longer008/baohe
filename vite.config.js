@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-// import vitePluginImp from "vite-plugin-imp"
-import styleImport from 'vite-plugin-style-import'
+import vitePluginImp from 'vite-plugin-imp' //打包更小
+// import styleImport from 'vite-plugin-style-import'  //按需加载
 import { resolve } from 'path'
 
 // https://vitejs.dev/config/
@@ -9,17 +9,27 @@ export default defineConfig({
   base: '/baohe/',
   plugins: [
     vue(),
-    styleImport({
-      libs: [
+    // styleImport({
+    //   libs: [
+    //     {
+    //       libraryName: 'element-plus',
+    //       esModule: true,
+    //       resolveStyle: name => {
+    //         console.log(name)
+    //         return `element-plus/lib/theme-chalk/${name}.css`
+    //       },
+    //       resolveComponent: name => {
+    //         return `element-plus/lib/${name}`
+    //       },
+    //     },
+    //   ],
+    // }),
+    vitePluginImp({
+      libList: [
         {
-          libraryName: 'element-plus',
-          esModule: true,
-          resolveStyle: name => {
-            console.log(name)
+          libName: 'element-plus',
+          style: name => {
             return `element-plus/lib/theme-chalk/${name}.css`
-          },
-          resolveComponent: name => {
-            return `element-plus/lib/${name}`
           },
         },
       ],

@@ -12,12 +12,12 @@ _axios.interceptors.request.use(
   async config => {
     config.headers = {
       'Access-Control-Allow-Credentials': true,
+      'Access-Control-Allow-Headers':
+        'Authorization,Origin, X-Requested-With, Content-Type, Accept',
       // "Access-Control-Request-Headers":"x-requested-with",
-      'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
       'Access-Control-Allow-Origin': '*',
       // "Content-Type": "application/json;charset=UTF-8",
-      'Access-Control-Allow-Methods':'*',
-
+      'Access-Control-Allow-Methods': '*',
     }
     // 如果存在token 就携带token
     const token = window.localStorage.getItem('accessToken')
@@ -33,7 +33,7 @@ _axios.interceptors.request.use(
 
 _axios.interceptors.response.use(
   response => {
-    const res=response.data
+    const res = response.data
     if (response.status !== 200) {
       return Promise.reject(new Error(res.message || 'Error'))
     } else {

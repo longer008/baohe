@@ -21,3 +21,4 @@ export const getAvatar = (type = 2) => {
 export const getBackgroundImg = () => {
   return request.get('https://api.66mz8.com/api/bg.img.php?format=json')
 }
+

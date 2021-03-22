@@ -47,6 +47,14 @@ const routes:Array<RouteRecordRaw > = [
     },
     component: () => import('../views/About.vue'),
   },
+  {
+    path: '/hello',
+    name: 'hello',
+    meta: {
+      title: '嗨',
+    },
+    component: () => import('../views/Hello.vue'),
+  },
   // {
   //   path: "/user",
   //   name: "user",

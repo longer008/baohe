@@ -9,6 +9,7 @@
         <router-link :to="'fund'">基金</router-link>
         <router-link :to="'joke'">笑话</router-link>
         <router-link :to="'about'">关于</router-link>
+        <router-link :to="'hello'">嗨</router-link>
       </nav>
 
       <router-view />
