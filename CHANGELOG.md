@@ -1,3 +1,9 @@
+## [0.0.18](https://github.com/longer008/baohe/compare/v0.0.17...v0.0.18) (2021-03-22)
+
+### Features
+
+- ip 查询 ([f70e76a](https://github.com/longer008/baohe/commit/f70e76a2efff8fba4329e56f011d12eb812bdf7e))
+
 ## [0.0.17](https://github.com/longer008/baohe/compare/v0.0.16...v0.0.17) (2021-03-20)
 
 ### Bug Fixes
