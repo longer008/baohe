@@ -26,10 +26,18 @@ export const getWeiBoList = params => {
   })
 }
 
-export const weather = (params = { location: '兰州' }) => {
+export const getIP=(params={})=>{
   return request({
-    url: 'https://api.66mz8.com/api/weather.php',
-    method: 'get',
+    url:'https://2021.ipchaxun.com/',
+    method:'get',
     params,
   })
 }
+
+// export const weather = (params = { location: '兰州' }) => {
+//   return request({
+//     url: 'https://api.66mz8.com/api/weather.php',
+//     method: 'get',
+//     params,
+//   })
+// }
