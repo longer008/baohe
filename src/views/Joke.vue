@@ -1,6 +1,9 @@
 <template>
   <div class="joke-container">
-    <h3>开心一刻(点击下面文本复制)</h3>
+    <h3>
+      开心一刻(点击下面文本复制)
+      <el-button type="success" @click="getText"> 下一条</el-button>
+    </h3>
     <Suspense>
       <template #default>
         <textarea
@@ -29,16 +32,22 @@
 </template>
 
 <script lang="ts">
-// import { ElAlert } from 'element-plus'
 import { getJokeText } from '@api/joke'
-import { reactive, ref, toRefs, onMounted, getCurrentInstance } from 'vue'
+import {
+  reactive,
+  ref,
+  toRefs,
+  onMounted,
+  getCurrentInstance,
+  nextTick,
+} from 'vue'
 export default {
   components: {
     // ElAlert,
   },
   setup() {
     // 获取当前vue 实例
-    const { proxy } = getCurrentInstance()
+    const { proxy } = getCurrentInstance() as any
 
     const state = reactive({
       loading: false,
@@ -47,9 +56,17 @@ export default {
     })
     // 请求
     const getText = async () => {
-      state.loading = true
+      // state.loading = true
+      let loading = proxy.$loading({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)',
+      })
       let data: any = await getJokeText()
+      loading.close()
       state.text = data.joke
+      // nextTick()
     }
     onMounted(() => {
       // 测试Suspense
@@ -105,6 +122,7 @@ export default {
       ...toRefs(state),
       jokeText,
       handleCopy,
+      getText,
     }
   },
 }

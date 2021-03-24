@@ -12,6 +12,7 @@ import {
   ElMessage,
   ElMessageBox,
   ElNotification,
+  ElLoading,
 } from 'element-plus'
 
 import 'dayjs/locale/zh-cn'
@@ -39,6 +40,7 @@ plugins.forEach(plugin => {
 app.config.globalProperties.$notify = ElNotification
 app.config.globalProperties.$msgbox = ElMessageBox //alert,confirm,prompt,close
 app.config.globalProperties.$message = ElMessage
+app.config.globalProperties.$loading = ElLoading.service
 app.config.globalProperties.$this = app
 
 app.use(router).use(store).mount('#app')

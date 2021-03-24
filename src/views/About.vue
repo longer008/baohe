@@ -53,6 +53,7 @@
     </template>
   </Dialog>
   <el-button type="success" @click="openDialog">打开Dialog</el-button>
+  <p>测试nextTick：{{ message }}</p>
 </template>
 
 <script lang="ts">
@@ -65,6 +66,7 @@ import {
   reactive,
   ref,
   toRefs,
+  nextTick,
   // watch,
   // watchEffect,
   defineComponent,
@@ -116,6 +118,7 @@ export default defineComponent({
       modalOpen: false,
       dialogVisible: false,
       title: 'dialog测试',
+      nextTickText:'我是测试的内容',
     })
     const refDialog = ref()
 
@@ -132,6 +135,17 @@ export default defineComponent({
       state.dialogVisible = e
       // document.querySelector('#dialog')?.classList.remove('z1')
     }
+    const message = ref('Hello!')
+    const changeMessage = async newMessage => {
+      message.value = newMessage
+      await nextTick()
+      console.log('Now DOM is updated')
+    }
+    changeMessage('ces')
+    // setTimeout(()=>{
+    //   state.nextTickText="1秒后更改的数据"
+    //   nextTick()
+    // },1000)
     return {
       ...toRefs(state),
       increase,
@@ -140,6 +154,8 @@ export default defineComponent({
       multiple,
       openDialog,
       closeDialog,
+      changeMessage,
+      message,
     }
   },
 })

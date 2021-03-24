@@ -23,7 +23,8 @@ module.exports = {
     // js/ts
     'eol-last': 'error',
     'no-trailing-spaces': 'error',
-    'comma-style': ['error', 'last'],
+    // 0 = off, 1 = warn, 2 = error
+    'comma-style': ['warn', 'last'],
     'comma-dangle': ['error', 'always-multiline'],
     '@typescript-eslint/no-var-requires': 0, //允许require引入
     quotes: [

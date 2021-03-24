@@ -4,7 +4,25 @@
     <div>您的IP是：{{ ip }}</div>
     <p>归属地：{{ address }}</p>
     <p>运营商：{{ operator }}</p>
-    <!-- <h2>天气</h2> -->
+    <h2>天气</h2>
+    <p>{{ weather.address }}</p>
+    <div class="weather_box">
+      <div v-for="(item, index) in weather.forecasts" :key="index">
+        <p>
+          {{
+            index == 0
+              ? '今天'
+              : index == 1
+                ? '明天'
+                : index == 2
+                  ? '后天'
+                  : '大后天'
+          }}：{{ item.dayWeather }}
+        </p>
+        <p>温度：{{ item.dayTemp }}</p>
+        <p>星期：{{}}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -14,7 +32,19 @@ interface IPRes {
   data: Array<string>
   ret: string
 }
+interface Weather {
+  date: string
+  dayOfWeek: string
+  dayTemp: string
+  dayWindDirection: string
+  dayWindPower: string
+  nightTemp: string
+  nightWeather: string
+  nightWindDirection: string
+  nightWindPower: string
+}
 import { getIP } from '@api/index'
+import { weatherForecast } from '@api/mzp'
 import { reactive, toRefs, defineComponent, onMounted } from 'vue'
 export default defineComponent({
   setup() {
@@ -24,17 +54,22 @@ export default defineComponent({
       address: '',
       operator: '',
       loading: false,
-      weather: {},
+      weather: {
+        address: '',
+        forecasts: [],
+      },
     })
 
-    // const getWeather = async (params = state.data[2]) => {
-    //   state.loading = true
-    //   const data = await weather(params)
-    //   state.weather = data
-    //   state.loading = false
-    // }
+    const getWeatherForecast = async (params = state.data[2]) => {
+      state.loading = true
+      const data = await weatherForecast(params)
+      console.log(data)
+
+      state.weather = data.data
+      state.loading = false
+    }
     const useGetIP = async () => {
-      const res:IPRes = await getIP() as any
+      const res: IPRes = (await getIP()) as any
 
       if (res.ret === 'ok') {
         state.ip = res.ip
@@ -50,26 +85,7 @@ export default defineComponent({
     }
     onMounted(() => {
       useGetIP()
-      // request({ url: 'https://2021.ipchaxun.com/', method: 'get' })
-      //   .then(res => {
-      //     console.log(res)
-
-      //     if (res.ret === 'ok') {
-      //       state.ip = res.ip
-      //       state.data = res.data
-      //       state.operator = res.data[4] ? res.data[4] : '未知'
-      //       for (const item of res.data) {
-      //         if (res.data.indexOf(item) > 3) {
-      //           return
-      //         }
-      //         state.address += item
-      //       }
-      //     }
-      //   })
-      //   .catch(err => {
-      //     console.log(err)
-      //   })
-      // getWeather()
+      getWeatherForecast()
     })
     return {
       ...toRefs(state),
