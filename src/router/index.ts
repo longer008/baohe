@@ -12,6 +12,7 @@ const routes:Array<RouteRecordRaw > = [
     name: 'zhihu',
     meta: {
       title: '知乎',
+      hasFooter:false
     },
     component: () => import('../views/Zhihu.vue'),
   },

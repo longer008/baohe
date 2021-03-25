@@ -1,72 +1,210 @@
 <template>
-  <div class="main" :class="theme">
-    <!-- <Head /> -->
-    <!-- <div class="container"> -->
-    <div class="zhihu-hot">
-      <nav class="header">
-        <router-link :to="{ path: '/zhihu' }">知乎</router-link>
-        <router-link :to="'weibo'">微博</router-link>
-        <router-link :to="'fund'">基金</router-link>
-        <router-link :to="'joke'">笑话</router-link>
-        <router-link :to="'about'">关于</router-link>
-        <router-link :to="'hello'">嗨</router-link>
-      </nav>
+  <el-container class="container">
+    <el-header class="header">
+      <div class="header_left">
+        <i
+          class="icon"
+          :class="isCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
+          @click="isCollapse = !isCollapse"
+        ></i>
+        <span class="title">后台管理系统</span>
+      </div>
+      <div class="header_right">
+        {{ tagSetList }}
+        <el-tooltip
+          content="全屏"
+          class="el-tooltip"
+          :effect="effect"
+          placement="top"
+        >
+          <i class="icon el-icon-full-screen el-tooltip" @click="screen"></i>
+        </el-tooltip>
 
-      <router-view />
-      <ElBacktop />
-      <!-- <back-top v-if="show2top" /> -->
-      <!-- <router-view class="router-view" v-slot="{ Component }">
-        <transition :name="transitionName">
-          <component :is="Component" />
-        </transition>
-      </router-view> -->
-      <!-- </div> -->
-      <!-- <Foot /> -->
-    </div>
-  </div>
+        <el-tooltip content="你有2条未读消息" effect="dark">
+          <el-badge is-dot type="danger" class="badge_style">
+            <i class="icon el-icon-bell"></i>
+          </el-badge>
+        </el-tooltip>
+
+        <el-avatar class="avatar" :size="40" fit="cover" :src="url"></el-avatar>
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            {{ username }}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item icon="el-icon-plus">项目仓库</el-dropdown-item>
+              <el-dropdown-item icon="el-icon-circle-plus-outline">
+                退出
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
+    </el-header>
+
+    <el-container>
+      <el-aside :width="isCollapse ? '64px' : '200px'" class="aside">
+        <el-menu
+          default-active="index"
+          class="el-menu-vertical-demo"
+          :unique-opened="true"
+          menu-trigger="click"
+          :router="true"
+          :collapse="isCollapse"
+          :collapse-transition="false"
+          @open="handleOpen"
+          @close="handleClose"
+          @select="selectMenu"
+        >
+          <el-submenu index="1">
+            <template #title>
+              <i class="el-icon-location"></i>
+              <span>导航一</span>
+            </template>
+            <el-menu-item-group>
+              <template #title>新闻</template>
+              <el-menu-item index="zhihu">知乎</el-menu-item>
+              <el-menu-item index="weibo">微博</el-menu-item>
+            </el-menu-item-group>
+            <el-menu-item-group>
+              <template #title>好玩</template>
+              <el-menu-item index="joke">笑话</el-menu-item>
+            </el-menu-item-group>
+            <el-submenu index="/">
+              <template #title>选项四</template>
+              <el-menu-item index="/">选项无</el-menu-item>
+            </el-submenu>
+          </el-submenu>
+          <el-menu-item index="fund">
+            <i class="el-icon-coin"></i>
+            <template #title>基金</template>
+          </el-menu-item>
+          <el-menu-item index="about">
+            <i class="el-icon-chat-line-square"></i>
+            <template #title>about</template>
+          </el-menu-item>
+          <el-menu-item index="hello">
+            <i class="el-icon-orange"></i>
+            <template #title>嗨</template>
+          </el-menu-item>
+        </el-menu>
+      </el-aside>
+      <el-main class="main">
+        <!-- tags  面包屑 -->
+        <div class="tag_list">
+          <el-tag
+            v-for="item in tagSetList"
+            :key="item.name"
+            closable
+            size="medium"
+            :type="item.active ? '' : 'info'"
+            :effect="item.active ? 'dark' : 'plain'"
+            @close="closeTag"
+          >
+            {{ item.name }}
+          </el-tag>
+        </div>
+        <router-view />
+      </el-main>
+      <el-footer v-if="hasFooter" class="footer">footer</el-footer>
+    </el-container>
+  </el-container>
+  <ElBacktop />
 </template>
 
 <script lang="ts">
+import {
+  ElContainer,
+  ElAside,
+  ElHeader,
+  ElMain,
+  ElFooter,
+  ElMenu,
+  ElMenuItem,
+  ElMenuItemGroup,
+  ElSubmenu,
+  ElBacktop,
+  ElAvatar,
+  ElDropdown,
+  ElDropdownMenu,
+  ElDropdownItem,
+  ElTooltip,
+  ElBadge,
+  ElTag
+} from 'element-plus'
+import {
+  onMounted,
+  getCurrentInstance,
+  reactive,
+  toRefs,
+  ref,
+  provide,
+  computed,
+  nextTick
+} from 'vue'
+import screenfull from 'screenfull'
+import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
-import { ElBacktop } from 'element-plus'
-// import { useRouter } from "vue-router";
-import { ref, defineComponent, toRefs, reactive, onMounted, provide } from 'vue'
-// import BackTop from '@com/common/BackTop.vue'
-export default defineComponent({
+export default {
   components: {
-    // BackTop,
+    ElContainer,
+    ElAside,
+    ElHeader,
+    ElMain,
+    ElFooter,
+    ElMenu,
+    ElMenuItem,
+    ElMenuItemGroup,
+    ElSubmenu,
     ElBacktop,
+    ElAvatar,
+    ElDropdown,
+    ElDropdownMenu,
+    ElDropdownItem,
+    ElTooltip,
+    ElBadge,
+    ElTag
   },
-
   setup() {
-    const state = reactive({
-      transitionName: 'slide-left',
-      theme: 'night',
-      scrollHeight:
-        document.documentElement.scrollTop || document.body.scrollTop,
-      // isPhone: <any>false,
-      isFirst: true,
-    })
+    const route = useRoute()
     const store = useStore()
+    const state = reactive({
+      hasFooter: false,
+      isFirst: true,
+      isCollapse: false, //展开
+      url:
+        'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+      username: 'admin',
+      themeColor: '',
+      effect: 'dark',
+      tagList: [] as any
+    })
+    // let set = new Set()
+    let tagSetList = computed(() => {
+      console.log(state.tagList)
 
-    const show2top = ref(false)
-    // 监听滚动
+      state.tagList.forEach(item => {
+        if (item.name == route.name) {
+          item.active = true
+        } else {
+          item.active = false
+        }
+      })
+      return new Set(state.tagList)
+    })
+    const { proxy } = getCurrentInstance()
     onMounted(() => {
-      handleSize()
-      window.addEventListener('scroll', handleScroll)
+      let name=route.name
+      console.log(route)
+
+      state.tagList.push({ 'name': route.name, 'active': true })
+
+      state.hasFooter = route.meta.hasFooter as any
       // 谷歌浏览器onresize事件会执行2次，这里加个标志位控制
       window.addEventListener('resize', handleSize)
     })
 
-    const handleScroll = () => {
-      let scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop
-      if (scrollTop >= 700) {
-        show2top.value = true
-      } else {
-        show2top.value = false
-      }
-    }
     let isPhone = ref(false)
     const handleSize = () => {
       let width =
@@ -88,64 +226,102 @@ export default defineComponent({
     }
     // 依赖注入
     provide('isPhone', isPhone)
-    const provideTest = '来自app.vue的provide'
-    provide('provideTest', provideTest)
 
-    return { ...toRefs(state), show2top }
-  },
-})
-</script>
+    const screen = () => {
+      if (!screenfull.isEnabled) {
+        proxy.$notify({
+          type: 'error',
+          message: '您的浏览器不支持全屏！'
+        })
+        return false
+      }
+      screenfull.toggle()
 
-<style lang="scss">
-@import './assets/style/reset.scss';
-@import url('./assets/style/normalize.css');
-:root {
-  --border-color: #ebebeb;
-  --zhihu-color: #9fadc7;
-  /* css变量 */
-  --bgc: #f6f6f6;
-}
-.main {
-  background-color: #f6f6f6;
-}
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  background-color: #f6f6f6;
-  scroll-behavior: smooth;
-  width: 100vw;
-  height: 100vh;
-}
+      proxy.$notify({
+        message: '全屏触发啦',
+        type: 'success'
+      })
+    }
 
-.zhihu-hot {
-  // width: 696px;
-  width: 100vw;
-  margin: 0 auto;
-  border: 1px solid #f0f2f7;
+    const selectMenu = (index, indexPath) => {
+      state.tagList.push({ name: index, active: false })
+      console.log(index, indexPath)
+    }
+    const closeTag = item => {
+      console.log(item)
+    }
+    const handleOpen = (key, keyPath) => {
+      console.log(key, keyPath)
+    }
+    const handleClose = (key, keyPath) => {
+      console.log(key, keyPath)
+    }
 
-  .header {
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
-    display: flex;
-    // padding: 20px;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    // border-bottom: 1px solid #f0f2f7;
-    margin: 20px auto;
-    a {
-      display: inline-block;
-      align-items: center;
-      text-align: center;
-      width: 64px;
-      margin: 0 22px;
-      background-color: #52adfe;
-      color: #fff;
+    return {
+      ...toRefs(state),
+      selectMenu,
+      closeTag,
+      handleOpen,
+      handleClose,
+      screen,
+      tagSetList
     }
   }
+}
+</script>
+
+<style lang="scss" scoped>
+:root {
+  --headerHeight: 60px;
+}
+.container {
+  width: 100%;
+  height: 100%;
+}
+.aside {
+  background-color: rgb(238, 241, 246);
+}
+.header {
+  background-color: #fff;
+  height: var(--headerHeight);
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  .icon {
+    font-size: 24px;
+    // line-height: 60px;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+
+  .header_left {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .title {
+      font-size: 24px;
+      display: inline-block;
+    }
+  }
+  .header_right {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .avatar {
+      margin-right: 10px;
+    }
+    .badge_style {
+      .icon {
+        margin: 0;
+      }
+      margin-right: 20px;
+    }
+  }
+}
+.main {
+  width: 100%;
+  // height: 100%;
+  min-height: calc(100vh - 60px);
+  background-color: #f6f6f6;
 }
 </style>

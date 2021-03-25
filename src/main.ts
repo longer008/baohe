@@ -4,6 +4,7 @@ import App from './App.vue'
 // import ElementPlus from "element-plus";
 // 按需加载
 import 'element-plus/lib/theme-chalk/base.css'  //17.4kb
+import './assets/style/reset.css'
 // import 'element-plus/lib/theme-chalk/index.css'   //255kb
 
 // 按需引入

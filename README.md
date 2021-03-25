@@ -51,3 +51,7 @@ location /api/ {                                   
 ### 按需加载插件
 vite-plugin-imp比vite-plugin-style-import最终打包小一点
 
+
+## 转后台管理
+全屏
+> yarn add screenfull 

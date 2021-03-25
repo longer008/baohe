@@ -25,7 +25,7 @@ module.exports = {
     'no-trailing-spaces': 'error',
     // 0 = off, 1 = warn, 2 = error
     'comma-style': ['warn', 'last'],
-    'comma-dangle': ['error', 'always-multiline'],
+    'comma-dangle': ['off', 'always-multiline'],
     '@typescript-eslint/no-var-requires': 0, //允许require引入
     quotes: [
       'error',
@@ -33,7 +33,7 @@ module.exports = {
       { avoidEscape: true, allowTemplateLiterals: true },
     ],
     camelcase: ['error', { properties: 'never' }],
-    semi: ['error', 'never'],
+    semi: ['warn', 'never'],
     indent: ['error', 2, { SwitchCase: 1 }],
     'object-curly-spacing': ['error', 'always'],
     'arrow-parens': ['error', 'as-needed'],
@@ -56,7 +56,7 @@ module.exports = {
     'vue/no-v-html': 'off',
     'vue/singleline-html-element-content-newline': 'off',
     'vue/html-self-closing': [
-      'error',
+      'off',
       {
         html: {
           void: 'always',
@@ -66,7 +66,7 @@ module.exports = {
       },
     ],
     'vue/max-attributes-per-line': [
-      'error',
+      'off',
       {
         singleline: 3,
         multiline: {

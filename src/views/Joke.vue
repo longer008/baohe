@@ -142,7 +142,7 @@ textarea {
   border-right: 1px solid #ebebeb;
 }
 .joke-text {
-  width: 85vw;
+  width: 76vw;
   text-indent: 34px;
   // max-width: 100vw;
   min-height: 120px;
