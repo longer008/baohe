@@ -55,3 +55,11 @@ vite-plugin-imp比vite-plugin-style-import最终打包小一点
 ## 转后台管理
 全屏
 > yarn add screenfull 
+
+
+### 未解决的坑
+- 第一次进入页面使用useRoute()获取不到name属性
+
+
+### other
+- vscode 打开多个vscode窗口 ：ctrl + shift + n

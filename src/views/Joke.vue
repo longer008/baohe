@@ -39,7 +39,7 @@ import {
   toRefs,
   onMounted,
   getCurrentInstance,
-  nextTick,
+  nextTick
 } from 'vue'
 export default {
   components: {
@@ -52,7 +52,7 @@ export default {
     const state = reactive({
       loading: false,
       text: '',
-      openAlert: false,
+      openAlert: false
     })
     // 请求
     const getText = async () => {
@@ -61,12 +61,17 @@ export default {
         lock: true,
         text: 'Loading',
         spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.7)',
+        background: 'rgba(0, 0, 0, 0.7)'
       })
       let data: any = await getJokeText()
-      loading.close()
-      state.text = data.joke
-      // nextTick()
+      if (data.success) {
+        loading.close()
+        state.text = data.joke
+      } else {
+        setTimeout(() => {
+          loading.close()
+        }, 2000)
+      }
     }
     onMounted(() => {
       // 测试Suspense
@@ -110,7 +115,7 @@ export default {
       proxy.$notify({
         type: 'success',
         title: '成功',
-        message: '复制成功',
+        message: '复制成功'
       })
       // ElNotification({
       //   title: '成功',
@@ -122,9 +127,9 @@ export default {
       ...toRefs(state),
       jokeText,
       handleCopy,
-      getText,
+      getText
     }
-  },
+  }
 }
 </script>
 

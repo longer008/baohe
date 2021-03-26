@@ -53,6 +53,7 @@ const routes:Array<RouteRecordRaw > = [
     name: 'hello',
     meta: {
       title: '嗨',
+      name:'hello'
     },
     component: () => import('../views/Hello.vue'),
   },

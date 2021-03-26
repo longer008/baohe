@@ -1,9 +1,9 @@
 <template>
   <div class="hello">
     <div>欢迎您</div>
-    <div>您的IP是：{{ ip }}</div>
+    <!-- <div>您的IP是：{{ ip }}</div>
     <p>归属地：{{ address }}</p>
-    <p>运营商：{{ operator }}</p>
+    <p>运营商：{{ operator }}</p> -->
     <h2>天气</h2>
     <p>{{ weather.address }}</p>
     <div class="weather_box">
@@ -43,7 +43,7 @@ interface Weather {
   nightWindDirection: string
   nightWindPower: string
 }
-import { getIP } from '@api/index'
+import { getIP2 } from '@api/index'
 import { weatherForecast } from '@api/mzp'
 import { reactive, toRefs, defineComponent, onMounted } from 'vue'
 export default defineComponent({
@@ -68,23 +68,40 @@ export default defineComponent({
       state.weather = data.data
       state.loading = false
     }
-    const useGetIP = async () => {
-      const res: IPRes = (await getIP()) as any
+    // const useGetIP = async () => {
+    //   const res: IPRes = (await getIP()) as any
 
-      if (res.ret === 'ok') {
-        state.ip = res.ip
-        state.data = res.data as any
-        state.operator = res.data[4] ? res.data[4] : '未知'
-        for (const item of res.data) {
-          if (res.data.indexOf(item) > 3) {
-            return
-          }
-          state.address += item
-        }
-      }
+    //   if (res.ret === 'ok') {
+    //     state.ip = res.ip
+    //     state.data = res.data as any
+    //     state.operator = res.data[4] ? res.data[4] : '未知'
+    //     for (const item of res.data) {
+    //       if (res.data.indexOf(item) > 3) {
+    //         return
+    //       }
+    //       state.address += item
+    //     }
+    //   }
+    // }
+    const useGetIP2 = async () => {
+      const res = (await getIP2()) as any
+      console.log(res)
+
+
+      // if (res.ret === 'ok') {
+      //   state.ip = res.ip
+      //   state.data = res.data as any
+      //   state.operator = res.data[4] ? res.data[4] : '未知'
+      //   for (const item of res.data) {
+      //     if (res.data.indexOf(item) > 3) {
+      //       return
+      //     }
+      //     state.address += item
+      //   }
+      // }
     }
     onMounted(() => {
-      useGetIP()
+      useGetIP2()
       getWeatherForecast()
     })
     return {

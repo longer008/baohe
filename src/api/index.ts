@@ -33,4 +33,12 @@ export const getIP=(params={})=>{
   })
 }
 
+export const getIP2=(params={})=>{
+  return request({
+    url:'http://pv.sohu.com/cityjson',
+    method:'get',
+    params
+  })
+}
+
 

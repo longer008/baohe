@@ -47,11 +47,7 @@ app.config.globalProperties.$this = app
 app.use(router).use(store).mount('#app')
 // app对象上的方法：config、use、mixin、component、directive、mount、unmount、provide/inject
 
-console.log(import.meta.env.BASE_URL)
-console.log(import.meta.env.DEV)
-
 const env = import.meta.env
-console.log(env)
 
 app.config.performance = true
 

@@ -10,7 +10,7 @@
         <span class="title">后台管理系统</span>
       </div>
       <div class="header_right">
-        {{ tagSetList }}
+        {{ tagList }}
         <el-tooltip
           content="全屏"
           class="el-tooltip"
@@ -46,7 +46,7 @@
     <el-container>
       <el-aside :width="isCollapse ? '64px' : '200px'" class="aside">
         <el-menu
-          default-active="index"
+          :default-active="currentRoute"
           class="el-menu-vertical-demo"
           :unique-opened="true"
           menu-trigger="click"
@@ -94,15 +94,17 @@
         <!-- tags  面包屑 -->
         <div class="tag_list">
           <el-tag
-            v-for="item in tagSetList"
-            :key="item.name"
+            v-for="(item, index) in tagList"
+            :key="item"
             closable
+            class="tag_style"
             size="medium"
-            :type="item.active ? '' : 'info'"
-            :effect="item.active ? 'dark' : 'plain'"
-            @close="closeTag"
+            :type="index === activeIndex ? '' : 'info'"
+            :effect="index === activeIndex ? 'dark' : 'plain'"
+            @close="closeTag(item, index)"
+            @click="clickTag(item, index)"
           >
-            {{ item.name }}
+            {{ item }}
           </el-tag>
         </div>
         <router-view />
@@ -141,7 +143,8 @@ import {
   ref,
   provide,
   computed,
-  nextTick
+  nextTick,
+  onBeforeMount
 } from 'vue'
 import screenfull from 'screenfull'
 import { useRoute } from 'vue-router'
@@ -178,28 +181,17 @@ export default {
       username: 'admin',
       themeColor: '',
       effect: 'dark',
-      tagList: [] as any
-    })
-    // let set = new Set()
-    let tagSetList = computed(() => {
-      console.log(state.tagList)
-
-      state.tagList.forEach(item => {
-        if (item.name == route.name) {
-          item.active = true
-        } else {
-          item.active = false
-        }
-      })
-      return new Set(state.tagList)
+      tagList: [] as any,
+      activeIndex: 0,
+      currentRoute:'/'
     })
     const { proxy } = getCurrentInstance()
+    console.log(proxy)
+
+    state.tagList.push(location.hash.split('/')[1])
+    state.currentRoute=location.hash.split('/')[1]
+
     onMounted(() => {
-      let name=route.name
-      console.log(route)
-
-      state.tagList.push({ 'name': route.name, 'active': true })
-
       state.hasFooter = route.meta.hasFooter as any
       // 谷歌浏览器onresize事件会执行2次，这里加个标志位控制
       window.addEventListener('resize', handleSize)
@@ -244,11 +236,35 @@ export default {
     }
 
     const selectMenu = (index, indexPath) => {
-      state.tagList.push({ name: index, active: false })
-      console.log(index, indexPath)
+      let idx = state.tagList.indexOf(index)
+      if (idx > -1) {
+        // state.tagList.splice(idx, 1)
+        proxy.$router.push({ name: index })
+        state.activeIndex = idx
+      } else {
+        state.tagList.push(index)
+        state.activeIndex = state.tagList.length - 1
+      }
     }
-    const closeTag = item => {
+    const closeTag = (item, index) => {
+      let length = state.tagList.length
+
+      state.tagList.splice(index, 1)
+      // 删除最后一个
+      if (index == length - 1) {
+        // 将新的最后一个放入main
+        proxy.$router.push({ name: state.tagList[length - 2] })
+        state.activeIndex = length - 2
+      } else {
+        state.activeIndex = index
+      }
+    }
+    const clickTag = (item, index) => {
       console.log(item)
+      proxy.$router.push({ name: item })
+      state.activeIndex = index
+      // state.tagList.splice(index, 1)
+      // state.tagList.push(item)
     }
     const handleOpen = (key, keyPath) => {
       console.log(key, keyPath)
@@ -261,10 +277,11 @@ export default {
       ...toRefs(state),
       selectMenu,
       closeTag,
+      clickTag,
       handleOpen,
       handleClose,
-      screen,
-      tagSetList
+      screen
+      // tagSetList
     }
   }
 }
@@ -323,5 +340,13 @@ export default {
   // height: 100%;
   min-height: calc(100vh - 60px);
   background-color: #f6f6f6;
+}
+.tag_list {
+  .tag_style {
+    cursor: pointer;
+  }
+  .tag_style:not(:nth-child(1)) {
+    margin-left: 10px;
+  }
 }
 </style>
