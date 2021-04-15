@@ -4,7 +4,6 @@
 // }
 // console.log(say(hello)) // Hello vue!
 
-
 // interface Lengthwise {
 //   length: number;
 // }
@@ -15,6 +14,5 @@
 // }
 // // console.log(say(1))  // Argument of type '1' is not assignable to parameter of type 'Lengthwise'.
 // console.log(say({a: 'hello vue!', length: 10})) // { value: 'hello vue!', length: 10 }
-
 
 

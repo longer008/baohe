@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import vitePluginImp from 'vite-plugin-imp' //打包更小
 // import styleImport from 'vite-plugin-style-import'  //按需加载
 import { resolve } from 'path'
@@ -9,6 +10,12 @@ export default defineConfig({
   base: '/baohe/',
   plugins: [
     vue(),
+    // https://github.com/vuejs/jsx-next/blob/dev/packages/babel-plugin-jsx/README-zh_CN.md
+    vueJsx({
+      transformOn:true,
+      optimize:true,
+
+    }),
     // styleImport({
     //   libs: [
     //     {

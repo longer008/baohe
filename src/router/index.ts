@@ -55,7 +55,7 @@ const routes:Array<RouteRecordRaw > = [
       title: '嗨',
       name:'hello'
     },
-    component: () => import('../views/Hello.vue'),
+    component: () => import('../views/Hello'),
   },
   // {
   //   path: "/user",

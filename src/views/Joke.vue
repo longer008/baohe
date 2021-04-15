@@ -41,6 +41,7 @@ import {
   getCurrentInstance,
   nextTick
 } from 'vue'
+import { useRoute } from 'vue-router'
 export default {
   components: {
     // ElAlert,
@@ -54,6 +55,8 @@ export default {
       text: '',
       openAlert: false
     })
+
+    const route=useRoute()
     // 请求
     const getText = async () => {
       // state.loading = true
@@ -74,6 +77,8 @@ export default {
       }
     }
     onMounted(() => {
+      console.log(route.name)
+
       // 测试Suspense
       setTimeout(() => {
         getText()
