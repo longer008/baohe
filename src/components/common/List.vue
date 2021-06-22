@@ -69,14 +69,63 @@ export default defineComponent({
     }
   }
 }
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 375px) {
   .list-item {
     width: 100%;
     height: 40px;
     padding: 0 8px;
     border-bottom: 1px solid var(--border-color);
     background-color: #fff;
+    a {
+      display: flex;
+      justify-content: flex-start;
+      // align-items: center;
+      font-size: 16px;
+      color: #333;
+      height: 40px;
+      line-height: 40px;
+    }
+    .img-icon img {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      vertical-align: middle;
+    }
+    .title-box {
+      height: 40px;
+      // display: inline-block;
+      display: flex;
+      align-items: flex-start;
+      margin: 0 8px;
+      padding: 0;
+      .main-text {
+        display: inline-block;
+        margin: 0;
+        max-width: 230px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .sub-text {
+        display: inline-block;
+        height: 20px;
+        line-height: 20px;
+        margin-left: 4px;
+        font-size: 14px;
+        vertical-align: super;
+        color: #939393;
+      }
+    }
+  }
+}
 
+@media screen and (min-width: 375px) and (max-width:750px) {
+  .list-item {
+    width: 100%;
+    height: 40px;
+    padding: 0 8px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: #fff;
     a {
       display: flex;
       justify-content: flex-start;

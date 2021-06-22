@@ -100,6 +100,7 @@ a {
   background-color: #fff;
   padding: 16px 16px 16px 0;
   display: flex;
+  justify-content: space-between;
   position: relative;
   border-bottom: 1px solid var(--border-color);
   .news-number {
@@ -172,9 +173,11 @@ a {
     width: 190px;
     height: 105px;
     margin-left: 16px;
+    object-fit: fill;
   }
 }
-@media screen and (max-width: 376px) {
+
+@media screen and (max-width: 375px) {
   .news {
     width: 100%;
     height: 116px;
@@ -217,15 +220,96 @@ a {
       .news-title {
         width: 100%;
         text-align: left;
-        font-size: 16px;
-        line-height: 32px;
-        max-height: 56px;
+        font-size: 14px;
+        line-height: 22px;
+        max-height: 44px;
         text-overflow: ellipsis;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         color: #121212;
+        margin-left: 4px;
+      }
+      .news-desc {
+        font-size: 14px;
+        width: 100%;
+        line-height: 25px;
+        margin-top: 2px;
+        min-height: 25px;
+        text-align: left;
+        color: #444;
+      }
+      .multline {
+        max-height: 50px;
+      }
+      .hot-box {
+        display: none;
+      }
+    }
+    .news-img img {
+      border-radius: 4px;
+      width: 136px;
+      height: 100px;
+      margin-left: 8px;
+    }
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width:750px) {
+  .news {
+    width: 100%;
+    height: 116px;
+    background-color: #fff;
+    padding: 8px 8px 8px 0;
+    display: flex;
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
+    .news-number {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 26px;
+      font-weight: 600;
+      font-size: 18px;
+      // line-height: 1.8;
+      text-align: center;
+      .is-new {
+        width: 19px;
+        height: 19px;
+        border-radius: 4px;
+        background-color: rgb(255, 150, 7);
+        color: #fff;
+        margin: 0 auto;
+        font-size: 12px;
+      }
+    }
+    .top-three-num {
+      color: #ff9607;
+    }
+    .other-num {
+      color: #999;
+    }
+    .news-info {
+      // max-width: 200px;
+      max-width: calc(100% - 160px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      .news-title {
+        max-width: 100%;
+        text-align: left;
+        font-size: 14px;
+        line-height: 22px;
+        max-height: 44px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        color: #121212;
+        margin-left: 4px;
       }
       .news-desc {
         font-size: 14px;

@@ -168,7 +168,7 @@ p {
   text-align: left;
   padding-left: 200px;
 }
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 750px) {
   .details,.box{
     width: 98vw;
   }
