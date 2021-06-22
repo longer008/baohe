@@ -103,6 +103,8 @@ js中先获取实例
 提交代码
 > yarn cz
 
+自动代码检测->`.husky/pre-commit`
+
 发布版本、生成changelog
 > yarn release
 
