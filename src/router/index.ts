@@ -1,18 +1,22 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw ,useRoute } from 'vue-router'
 
 const routes:Array<RouteRecordRaw > = [
   {
     path: '/',
-    redirect: '/zhihu',
+    name:'home',
+    meta:{
+      title: '首页',
+    },
+    redirect: '/weibo',
   },
-
 
   {
     path: '/zhihu',
     name: 'zhihu',
     meta: {
       title: '知乎',
-      hasFooter:false
+      hasFooter:false,
+      keepAlive:true
     },
     component: () => import('../views/Zhihu.vue'),
   },
@@ -57,27 +61,13 @@ const routes:Array<RouteRecordRaw > = [
     },
     component: () => import('../views/Hello'),
   },
-  // {
-  //   path: "/user",
-  //   name: "user",
-  //   meta: {
-  //     title: "我的",
-  //   },
-  //   component: () => import("../views/user/index.vue"),
-  // },
-  // {
-  //   path: "/article",
-  //   name: "article",
-  //   meta: {
-  //     title: "新闻详情",
-  //   },
-  //   component: () => import("../views/article/index.vue"),
-  // },
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
 })
+
+export const route=useRoute()
 
 export default router

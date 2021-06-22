@@ -14,7 +14,7 @@
     "noUnusedParameters":false, //可以存在定义了没使用的变量
     "baseUrl": ".", //以项目根目录为基
     "paths": {
-      // 需要和baseUrl配合  目录别名  和vite.config.ts 中的alias配置为一样的可以方便路径提示
+      // 需要和baseUrl配合  目录别名  和vite.config.js 中的alias配置为一样的可以方便路径提示
       "@/*": ["src/*"],
       "@com/*": ["src/components/*"],
       "@api/*": ["src/api/*"],

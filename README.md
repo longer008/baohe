@@ -34,11 +34,9 @@ package.json 中删除
 
 ```
 
-### 版本 多 push 几次然后再生成 tag
 
-### 服务端接口转发
-
-koa
+### 用koa进行接口转发
+后端地址：https://github.com/longer008/baohe-service
 
 ### nginx 接口代理
 
@@ -49,17 +47,68 @@ location /api/ {                                   
 
 
 ### 按需加载插件
-vite-plugin-imp比vite-plugin-style-import最终打包小一点
+`vite-plugin-imp`虽然比`vite-plugin-style-import`最终打包体积小一点，
+但element-plus官方支持`vite-plugin-style-import`，所以现在用`vite-plugin-style-import`.
 
-
-## 转后台管理
+### 转后台管理
 全屏
 > yarn add screenfull 
 
 
-### 未解决的坑
-- 第一次进入页面使用useRoute()获取不到name属性
+### 页面缓存
+```js
+ <router-view v-slot="{Component}">
+      <!-- 缓存页面 -->
+    <keep-alive v-if="$route.meta.keepAlive">
+      <component :is="Component" />
+    </keep-alive>
+    <component :is="Component" v-else />
+  </router-view>
+```
+这种方式缓存不生效的话用下面这种
+```js
+    <router-view v-slot="{Component}">
+      <!-- 缓存页面 -->
+      <keep-alive :include="$store.state.keepLiveRoute">
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
+```
+store文件
+```js
+export default createStore({
+  state:{
+  keepLiveRoute:[
+    'Zhihu',
+    'Hello',
+    'About',
+  ]
+  }
+})
+
+```
+### 技巧
+页面中如果需要用到 `useStore,useRoute,useRouter`,不必在每个页面引入
+模板中直接`$store/$route/$router`即可，
+js中先获取实例
+> import { getCurrentInstance } from 'vue'
+
+然后赋值
+> const app:any=getCurrentInstance()?.proxy
+
+最后使用,例route
+> app.$route
+
+### 部署
+提交代码
+> yarn cz
+
+发布版本、生成changelog
+> yarn release
 
 
 ### other
 - vscode 打开多个vscode窗口 ：ctrl + shift + n
+- 知乎页面加载大量网络图片，所以比较慢
+- 因为最终调用的还是别人的接口，出于人道主义精神，微博页面就不每分钟刷新了，利用`localStorage`进行缓存;知乎页面使用`keep-alive`缓存
+

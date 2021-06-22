@@ -61,13 +61,11 @@
 </template>
 
 <script lang="ts">
-// import { useStore } from 'vuex'
 import { defineComponent, watch, inject } from 'vue'
 export default defineComponent({
   props: {
     index: {
       type: Number,
-
       default: 0,
     },
     hasNewsImg: {
@@ -77,10 +75,7 @@ export default defineComponent({
     newsInfo: {
       type: Object,
       default: null,
-    },
-    // isPhone:{
-    //   default:false
-    // },
+    }
   },
 
   setup() {
@@ -246,15 +241,6 @@ a {
       }
       .hot-box {
         display: none;
-        // font-size: 14px;
-        // height: 16px;
-        // margin-top: 8px;
-        // color: #9fadc7;
-        // pointer-events: none;
-        // .share-box {
-        //   display: inline-block;
-        //   margin-left: 40px;
-        // }
       }
     }
     .news-img img {

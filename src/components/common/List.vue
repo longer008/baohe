@@ -45,7 +45,6 @@ export default defineComponent({
   a {
     display: flex;
     justify-content: flex-start;
-
     align-items: center;
     font-size: 20px;
     color: #333;
@@ -56,7 +55,6 @@ export default defineComponent({
     display: inline-block;
     width: 30px;
     height: 30px;
-
     vertical-align: middle;
   }
   .title-box {
@@ -92,7 +90,6 @@ export default defineComponent({
       display: inline-block;
       width: 30px;
       height: 30px;
-
       vertical-align: middle;
     }
     .title-box {

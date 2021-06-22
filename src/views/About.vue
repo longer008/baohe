@@ -1,34 +1,25 @@
 <template>
   <div class="about-container">
-    <h1>{{ color }}</h1>
-    <!-- <div class="time-box">
-      <label>请输入倒计时时间</label>
-
-      <el-input
-        v-model="count"
-        type="number"
-        @blur="setTime()"
-        placeholder="请输入倒计时时间"
-      />
-    </div>
-    <p class="time">
-      倒计时：{{ count }}
-      <el-button>停止计时</el-button>
-    </p> -->
     <details class="details">
       <summary>style变量测试</summary>
       <pre>
+         <h3>color：{{ color }}</h3>
         <p class="template"> {{ code.html }}</p>
         <p class="javascript">{{ code.js }}</p>
         <p class="css">{{ code.css }}</p>
       </pre>
     </details>
-    <h2>hooks测试</h2>
-    <p>count: {{ count }}</p>
-    <p>倍数： {{ multiple }}</p>
-    <div>
-      <el-button type="success" @click="increase()">加1</el-button>
-      <el-button type="primary" @click="decrease()">减一</el-button>
+
+    <div class="box">
+      <h2>hooks测试</h2>
+      <p>count: {{ count }}</p>
+      <p>倍数： {{ multiple }}</p>
+      <div class="btn-group">
+        <el-button type="success" @click="increase()">加1</el-button>
+        <el-button type="primary" @click="decrease()">减一</el-button>
+        <el-button type="success" @click="openDialog">打开Dialog</el-button>
+      </div>
+      <p>测试nextTick：{{ message }}</p>
     </div>
   </div>
   <Dialog
@@ -52,67 +43,50 @@
       <div>footer</div>
     </template>
   </Dialog>
-  <el-button type="success" @click="openDialog">打开Dialog</el-button>
-  <p>测试nextTick：{{ message }}</p>
 </template>
 
 <script lang="ts">
-// setup简写
 import useCount from '@hooks/useCount'
-// import { ElInput } from 'element-plus'
 import Dialog from '@com/common/Dialog.vue'
 import {
-  getCurrentInstance,
   reactive,
   ref,
   toRefs,
   nextTick,
-  // watch,
-  // watchEffect,
+  inject,
   defineComponent,
 } from 'vue'
 export default defineComponent({
   components: {
-    // ElInput,
     Dialog,
   },
   setup() {
     const { increase, decrease, count, multiple } = useCount(10)
-    // const foo = ref(1)
-    // const bar = ref(10)
-    // watch(
-    //   [foo, bar],
-    //   ([foo, bar], [preFoo, preBar]) => {
-    //     console.log('foo:' + foo + ' prefoo:' + preFoo)
-    //     console.log('bar:' + bar + ' preBar:' + preBar)
-    //   },
-    //   {
-    //     immediate: true,
-    //   },
-    // )
-    // setTimeout(() => {
-    //   foo.value++, bar.value++
-    // }, 1000)
+
     const state = reactive({
       color: 'green',
       code: {
-        html: '<h1>{{ color }}</h1>',
-        js: `
-        import { reactive, toRefs } from "vue";
-        export default {
-          setup() {
-            const state = reactive({
-              color: "green",
-            });
-            return {
-              ...toRefs(state),
-            };
-          },
-        };
+        html: `
+  <h1>{{ color }}</h1>
         `,
-        css: `h1 {
-                  color: v-bind(color);
-        }`,
+        js: `
+  import { reactive, toRefs } from "vue";
+  export default {
+    setup() {
+      const state = reactive({
+        color: "green",
+      });
+      return {
+        ...toRefs(state),
+      };
+    },
+  };
+          `,
+        css:`
+  h3{
+      color: v-bind(color);
+    }
+          `,
       },
       btnType: 'primary',
       modalOpen: false,
@@ -120,20 +94,14 @@ export default defineComponent({
       title: 'dialog测试',
       nextTickText:'我是测试的内容',
     })
-    const refDialog = ref()
-
-    // const { proxy } = getCurrentInstance()
+    // const refDialog = ref()
 
     const openDialog = () => {
       state.dialogVisible = true
-      // document.querySelector('#dialog')?.classList.add('z1')
-      // proxy.$this.$refs.dialog.onOpen()
-      // refDialog.value.onOpen()
     }
     const closeDialog = e => {
-
       state.dialogVisible = e
-      // document.querySelector('#dialog')?.classList.remove('z1')
+
     }
     const message = ref('Hello!')
     const changeMessage = async newMessage => {
@@ -141,11 +109,11 @@ export default defineComponent({
       await nextTick()
       console.log('Now DOM is updated')
     }
-    changeMessage('ces')
-    // setTimeout(()=>{
-    //   state.nextTickText="1秒后更改的数据"
-    //   nextTick()
-    // },1000)
+    changeMessage('hahaha')
+
+    let testInject=inject('provideTest')
+    console.log(testInject)
+
     return {
       ...toRefs(state),
       increase,
@@ -163,7 +131,8 @@ export default defineComponent({
 
 <style lang="scss">
 .about-container {
-  font-size: 14px;
+  min-height: 77vh;
+  margin-top: 14px;
 }
 .modal {
   background-color: #ccc;
@@ -175,11 +144,15 @@ export default defineComponent({
   font-size: 20px;
   font-weight: bold;
 }
-details {
+.details,.box {
   width: 80vw;
-  min-height: 200px;
   font-size: 16px;
   margin: 0 auto;
+  background: #fff;
+  overflow: hidden;
+}
+.box {
+  margin-top: 30px;
 }
 /* details summary::-webkit-details-marker { display:none; } 去三角形 */
 summary {
@@ -190,28 +163,37 @@ p {
   margin: 0;
   padding: 0;
 }
-pre {
-  background-color: #fff;
-}
-.template {
+.template,.javascript,.css{
   position: relative;
+  text-align: left;
+  padding-left: 200px;
+}
+@media screen and (max-width: 376px) {
+  .details,.box{
+    width: 98vw;
+  }
+  .template,.javascript,.css{
+    padding-left: 0;
+  }
+
+  }
+.template {
   background-color: turquoise;
 }
 .javascript {
-  position: relative;
   background-color: thistle;
 }
 .css {
   background-color: wheat;
-  position: relative;
 }
 
 @mixin codeTitle($content) {
   content: $content;
   position: absolute;
-  left: 0;
+  left: 8px;
   top: 0;
   color: black;
+  font-weight: bold;
 }
 .template::before {
   @include codeTitle('html:');
@@ -223,7 +205,16 @@ pre {
   @include codeTitle('css:');
 }
 
-h1 {
+h3 {
   color: v-bind(color);
+  margin:0;
+}
+
+.btn-group{
+  widows: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

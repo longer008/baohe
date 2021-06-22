@@ -6,10 +6,14 @@ export default createStore({
     isLogin: false,
     user: {},
     isPhone:false,
+    keepLiveRoute:[
+      'Zhihu',
+      'Hello',
+      'About',
+    ]
   },
   mutations: {
     login(state, user) {
-
       state.user = user
       state.isLogin = true
     },
@@ -26,7 +30,6 @@ export default createStore({
   getters:{
     getDevice(state){
       return state.isPhone
-
     },
   },
 })

@@ -10,17 +10,16 @@
 </template>
 
 <script lang="ts">
-// import { useStore } from 'vuex'
 import { getZhiHuList } from '@api/index'
 import {
   defineComponent,
   toRefs,
-  ref,
   reactive,
   onMounted,
 } from 'vue'
 import Card from '@com/common/Card.vue'
 export default defineComponent({
+  name:'Zhihu',
   components: {
     Card,
   },
@@ -65,6 +64,6 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px auto;
+  margin: 0 auto;
 }
 </style>

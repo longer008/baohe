@@ -3,11 +3,10 @@ import App from './App.vue'
 // 全局引入
 // import ElementPlus from "element-plus";
 // 按需加载
-import 'element-plus/lib/theme-chalk/base.css'  //17.4kb
-import './assets/style/reset.css'
-// import 'element-plus/lib/theme-chalk/index.css'   //255kb
+import 'element-plus/packages/theme-chalk/src/base.scss'
+import 'element-plus/lib/theme-chalk/base.css'
 
-// 按需引入
+// 全局绑定
 import {
   ElButton,
   ElMessage,
@@ -17,14 +16,16 @@ import {
 } from 'element-plus'
 
 import 'dayjs/locale/zh-cn'
-// import locale from 'element-plus/lib/locale/lang/zh-cn'
 
+// 移动端
 import '@utils/rem.ts'
 
-import router from './router'
+import router,{ route } from './router'
 import store from './store'
 
 const app = createApp(App)
+
+// import locale from 'element-plus/lib/locale/lang/zh-cn'
 // app.use(ElementPlus, { size: "small",locale });
 
 // element-plus
@@ -38,6 +39,10 @@ components.forEach(component => {
 plugins.forEach(plugin => {
   app.use(plugin)
 })
+
+app.config.globalProperties.$router=router
+app.config.globalProperties.$route=route
+app.config.globalProperties.$store=store
 app.config.globalProperties.$notify = ElNotification
 app.config.globalProperties.$msgbox = ElMessageBox //alert,confirm,prompt,close
 app.config.globalProperties.$message = ElMessage
@@ -45,12 +50,14 @@ app.config.globalProperties.$loading = ElLoading.service
 app.config.globalProperties.$this = app
 
 app.use(router).use(store).mount('#app')
-// app对象上的方法：config、use、mixin、component、directive、mount、unmount、provide/inject
 
+// env
 const env = import.meta.env
 
+// 性能跟踪
 app.config.performance = true
 
+// 全局异常捕获
 app.config.errorHandler = (err, vm, info) => {
   console.log('全局错误信息：' + info)
   console.log(err)

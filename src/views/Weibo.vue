@@ -1,6 +1,6 @@
 <template>
   <div class="hot-list-weibo">
-    <h2 class="tips">实时热点，每分钟更新一次</h2>
+    <div class="tips">实时热点，每分钟更新一次</div>
     <List v-for="(item, index) in newList" :key="index" :item="item" />
   </div>
 </template>
@@ -31,18 +31,18 @@ export default {
         state.loading = true
         const data = await getWeiBoList(params)
         let newList = data.data.cards[0].card_group
-        // localStorage.setItem("weiboList", JSON.stringify(newList));
+        localStorage.setItem('weiboList', JSON.stringify(newList))
         state.newList = newList
         state.loading = false
       }
     }
 
     onMounted(() => {
-      getList()
+      // getList()
       // state.timer=setInterval(getList,60000)
       // 初始请求数据
-      // let newList = localStorage.getItem("weiboList");
-      // newList ? (state.newList = JSON.parse(newList)) : getList();
+      let newList = localStorage.getItem('weiboList')
+      newList ? (state.newList = JSON.parse(newList)) : getList()
     })
     onUnmounted(() => {
       // clearTimeout(state.timer)
@@ -58,12 +58,13 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px auto;
+  margin: 0 auto;
 }
 .tips {
+  width: 100%;
   height: 36px;
   line-height: 36px;
-  font-size: 16px;
+  font-size: 14px;
   padding: 0 15px;
   color: #636363;
   background-color: #f2f2f2;

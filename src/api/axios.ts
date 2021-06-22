@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
+// axios配置
 const config = {
   timeout: 60 * 1000 * 2,
   withCredentials: true,
@@ -9,15 +10,14 @@ const config = {
 
 const _axios = axios.create(config)
 
+// 请求拦截
 _axios.interceptors.request.use(
   async config => {
     config.headers = {
-      // 'Access-Control-Allow-Credentials': false,
+      'Access-Control-Allow-Credentials': true,
       'Access-Control-Allow-Headers':
         'Authorization,Origin, X-Requested-With, Content-Type, Accept',
-      // "Access-Control-Request-Headers":"x-requested-with",
       'Access-Control-Allow-Origin': '*',
-      // "Content-Type": "application/json;charset=UTF-8",
       'Access-Control-Allow-Methods': '*'
     }
 
@@ -38,6 +38,7 @@ _axios.interceptors.request.use(
   }
 )
 
+// 响应拦截
 _axios.interceptors.response.use(
   response => {
     const res = response.data

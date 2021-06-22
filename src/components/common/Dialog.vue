@@ -67,7 +67,6 @@ export default {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  /* position: absolute; */
   margin: auto;
   width: 400px;
   height: 400px;

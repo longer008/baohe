@@ -1,0 +1,31 @@
+.hello{
+  min-height: 76vh;
+  margin-top: 23px;
+}
+
+.weather-box{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap
+}
+.weather-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-width: 125px;
+  margin: 20px;
+  p{
+    margin: 5px 0 ;
+  }
+}
+
+h2{
+  margin-bottom: 20px;
+}
+
+.today{
+  color: red;
+  font-weight: bold;
+}

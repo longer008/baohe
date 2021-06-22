@@ -375,3 +375,48 @@ export function utf8Decode(strData: string) {
   }
   return tmpArr.join('')
 }
+
+/**
+ *
+ * @param day 第几天  1-7
+ * @param startDay 一周开始时间 默认星期一:1  星期天：0
+ * @param needPrefix 是否需要"星期"二字
+ */
+export function dayOfWeek(day:number,startDay:number=1,needPrefix:boolean=false):string{
+  day=Number(day)
+  let finalDay=day
+  if (startDay===0&&day>1) {
+    finalDay=day-1
+  }else if (startDay===0 && day===1) {
+    finalDay=7
+  }
+  const prefix="星期"
+  let data=""
+  switch (finalDay) {
+    case 1:
+      data="一"
+      break;
+    case 2:
+      data="二"
+      break;
+    case 3:
+      data="三"
+      break;
+    case 4:
+      data="四"
+      break;
+    case 5:
+      data="五"
+      break;
+    case 6:
+      data="六"
+      break;
+    case 7:
+      data="天"
+      break;
+    default:
+      break;
+  }
+
+  return needPrefix?(prefix+data):data
+}

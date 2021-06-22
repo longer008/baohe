@@ -5,9 +5,7 @@
     data-tooltop="回到顶部"
     @click="back2top"
   >
-    <!-- <button class="back-button"> -->
     <i class="io io-arrowup"></i>
-    <!-- </button> -->
   </div>
 </template>
 
@@ -45,19 +43,6 @@ export default {
       left: 50%;
       transform: translateX(-50%);
     }
-  // .back-button {
-  //   width: 40px;
-  //   height: 40px;
-  //   line-height: 40px;
-  //   position: relative;
-  //   cursor: pointer;
-  //   i {
-  //     position: absolute;
-  //     color: #707070;
-  //     top: 0;
-  //     left: 0;
-  //   }
-  // }
   &:hover {
     background-color: #76839b;
      &::before {
